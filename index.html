@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nagindas Khandwala College - BScIT Semester 3 Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        nkc: {
+                            navy: '#0F1E36',
+                            gold: '#C5A880',
+                            blue: '#1E40AF',
+                            teal: '#0D9488',
+                            crimson: '#991B1B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+        code, pre {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-glow:hover {
+            box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.15), 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            transform: translateY(-4px);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+        .dark .glass-glow:hover {
+            box-shadow: 0 10px 30px -10px rgba(197, 168, 128, 0.15), 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+            transform: translateY(-4px);
+            border-color: rgba(197, 168, 128, 0.3);
+        }
+        .pulse-soft {
+            animation: softPulse 2s infinite ease-in-out;
+        }
+        @keyframes softPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.02); }
+        }
+        .slide-in {
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <div class="flex flex-1 overflow-hidden">
+        
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-nkc-navy text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
+            <div class="p-6 border-b border-slate-700/50 flex flex-col justify-center items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg border-2 border-nkc-gold mb-3 transition-transform hover:scale-110 duration-300">
+                    <span class="text-nkc-navy font-extrabold text-2xl tracking-wider">NKC</span>
+                </div>
+                <h1 class="font-extrabold text-lg tracking-wide text-white">Nagindas Khandwala</h1>
+                <p class="text-xs text-nkc-gold font-semibold tracking-widest uppercase">BScIT Sem 3 Learning Hub</p>
+            </div>
+
+            <div class="px-6 py-4 border-b border-slate-700/30 bg-slate-800/40">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-nkc-gold flex items-center justify-center font-bold text-nkc-navy text-sm shadow-md transition-transform duration-300 hover:rotate-12" id="profile-avatar">IT</div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-medium">Welcome Student,</p>
+                        <input type="text" id="student-name" value="Guest Learner" class="bg-transparent text-sm font-semibold text-white focus:outline-none focus:border-b focus:border-nkc-gold w-36 transition-all" title="Click to edit name">
+                    </div>
+                </div>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto px-4 py-6 space-y-1.5" id="nav-links">
+                <a href="#" onclick="switchView('dashboard')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 bg-slate-800 text-white font-semibold shadow-inner border-l-4 border-nkc-gold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    <span>Dashboard Home</span>
+                </a>
+                
+                <div class="pt-4 pb-2 px-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Core Subjects</div>
+                
+                <a href="#" onclick="switchView('subject-adbms')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 hover:bg-slate-800/60 text-slate-300 hover:text-white">
+                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                    <span>ADBMS (UNIT 301)</span>
+                </a>
+                
+                <a href="#" onclick="switchView('subject-ds')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 hover:bg-slate-800/60 text-slate-300 hover:text-white">
+                    <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    <span>Data Structures (UNIT 302)</span>
+                </a>
+
+                <a href="#" onclick="switchView('subject-cost')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 hover:bg-slate-800/60 text-slate-300 hover:text-white">
+                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"></path></svg>
+                    <span>COST (UNIT 303)</span>
+                </a>
+
+                <a href="#" onclick="switchView('subject-cn')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 hover:bg-slate-800/60 text-slate-300 hover:text-white">
+                    <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span>Comp Networks (UNIT 304)</span>
+                </a>
+
+                <a href="#" onclick="switchView('subject-es')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 hover:bg-slate-800/60 text-slate-300 hover:text-white">
+                    <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 5h10a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2z"></path></svg>
+                    <span>Embedded Systems (UNIT 305)</span>
+                </a>
+
+                <div class="pt-4 pb-2 px-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Assessment</div>
+
+                <a href="#" onclick="switchView('mock-test')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 hover:bg-slate-800/60 text-slate-300 hover:text-white">
+                    <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Final Combined Mock</span>
+                </a>
+
+                <a href="#" onclick="switchView('achievements')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 hover:bg-slate-800/60 text-slate-300 hover:text-white">
+                    <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5a2 2 0 10-2 2h2zm-2 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Student Stats & Badges</span>
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-slate-700/50 text-xs text-slate-400 text-center">
+                NKC Autonomous Syllabus 2026
+            </div>
+        </aside>
+
+        <main class="flex-1 min-w-0 flex flex-col lg:pl-72 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+            
+            <header class="h-16 flex items-center justify-between px-6 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800/80 sticky top-0 z-40 transition-all shadow-sm">
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleSidebar()" class="lg:hidden text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-nkc-gold rounded-lg p-1">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div id="page-title" class="font-bold text-lg text-slate-800 dark:text-white tracking-tight">Student Dashboard</div>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <div class="hidden sm:block text-xs text-slate-500 dark:text-slate-400 font-semibold tracking-wider uppercase border-r border-slate-200 dark:border-slate-800 pr-4">
+                        Education for Freedom
+                    </div>
+                    <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all duration-150 relative group" title="Toggle Appearance">
+                        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m2.828-9.9a5 5 0 117.071 7.071l-7.071-7.071z"></path></svg>
+                        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div id="toast" class="hidden fixed bottom-6 right-6 z-50 flex items-center space-x-3 px-5 py-4 rounded-xl shadow-2xl glass border border-slate-200 dark:border-slate-800 transform translate-y-20 opacity-0 transition-all duration-300">
+                <div class="p-1 rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400" id="toast-icon">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800 dark:text-white" id="toast-title">Success</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400" id="toast-desc">Quiz loaded successfully!</p>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-6 space-y-8" id="view-container">
+                
+                <div id="view-dashboard" class="slide-in space-y-6">
+                    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-nkc-navy via-indigo-950 to-slate-900 text-white p-8 shadow-xl">
+                        <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                        <div class="relative z-10 max-w-2xl">
+                            <span class="bg-nkc-gold text-nkc-navy font-bold text-xs uppercase px-3 py-1.5 rounded-full tracking-widest shadow-md inline-block mb-4">NKC Autonomous Hub</span>
+                            <h2 class="text-3xl md:text-4xl font-black mb-2 leading-tight">Master Semester 3 with Absolute Confidence!</h2>
+                            <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">Explore dedicated course summaries curated perfectly to match Nagindas Khandwala College's autonomous BScIT curriculum. Interact with our live coding and planning visual labs, test your concepts, and evaluate your final semester preparation.</p>
+                            <div class="flex flex-wrap gap-4">
+                                <button onclick="switchView('subject-ds')" class="bg-white hover:bg-slate-100 text-nkc-navy font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-lg hover:shadow-white/10 hover:scale-[1.02] duration-300 active:scale-95">Start Learning</button>
+                                <button onclick="switchView('mock-test')" class="bg-nkc-gold/20 hover:bg-nkc-gold/30 border border-nkc-gold text-nkc-gold font-bold px-5 py-2.5 rounded-xl text-sm transition hover:scale-[1.02] duration-300 active:scale-95">Take Mock Exam</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex items-center space-x-4 transition-all duration-300 hover:shadow-lg">
+                            <div class="p-3 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-500 dark:text-indigo-400 rounded-2xl">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Exam Readiness</span>
+                                <h3 class="text-2xl font-black mt-1" id="dash-readiness">0%</h3>
+                                <p class="text-xs text-slate-400 mt-1">Based on quiz attempts</p>
+                            </div>
+                        </div>
+                        <div class="glass rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex items-center space-x-4 transition-all duration-300 hover:shadow-lg">
+                            <div class="p-3 bg-amber-50 dark:bg-amber-950/40 text-amber-500 dark:text-amber-400 rounded-2xl">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Subjects</span>
+                                <h3 class="text-2xl font-black mt-1">5 / 5</h3>
+                                <p class="text-xs text-slate-400 mt-1">Fully mapped to Sem 3</p>
+                            </div>
+                        </div>
+                        <div class="glass rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 flex items-center space-x-4 transition-all duration-300 hover:shadow-lg">
+                            <div class="p-3 bg-purple-50 dark:bg-purple-950/40 text-purple-500 dark:text-purple-400 rounded-2xl">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Combined Mock Status</span>
+                                <h3 class="text-2xl font-black mt-1 text-slate-500" id="dash-mock-status">Not Attempted</h3>
+                                <p class="text-xs text-slate-400 mt-1" id="dash-mock-score">No score details</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold tracking-tight">Your Semester Subjects</h3>
+                            <span class="text-xs font-bold text-indigo-500 hover:underline cursor-pointer">View Syllabus Details</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="subject-dash-grid">
+                            
+                            <div class="glass glass-glow rounded-2xl p-6 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:scale-[1.02] hover:shadow-md transition-all duration-300">
+                                <div>
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div class="px-2.5 py-1 text-xs font-semibold text-indigo-700 bg-indigo-50 rounded-lg dark:bg-indigo-950/40 dark:text-indigo-300">UNIT 301</div>
+                                        <div class="text-xs font-bold text-slate-400">Quiz Completed: <span id="dash-p-adbms">0%</span></div>
+                                    </div>
+                                    <h4 class="font-extrabold text-lg text-slate-800 dark:text-white mb-2 leading-snug">Advanced Database Management System</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-6">Explore Transaction Management, ACID properties, log-based recovery, 2-Phase Locking Protocols, and Distributed databases.</p>
+                                </div>
+                                <button onclick="switchView('subject-adbms')" class="w-full bg-indigo-50 hover:bg-indigo-100 text-indigo-600 dark:bg-indigo-950/30 dark:hover:bg-indigo-950/60 dark:text-indigo-400 font-bold py-2.5 rounded-xl text-xs transition active:scale-95">Open Classroom</button>
+                            </div>
+
+                            <div class="glass glass-glow rounded-2xl p-6 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:scale-[1.02] hover:shadow-md transition-all duration-300">
+                                <div>
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div class="px-2.5 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-lg dark:bg-emerald-950/40 dark:text-emerald-300">UNIT 302</div>
+                                        <div class="text-xs font-bold text-slate-400">Quiz Completed: <span id="dash-p-ds">0%</span></div>
+                                    </div>
+                                    <h4 class="font-extrabold text-lg text-slate-800 dark:text-white mb-2 leading-snug">Data Structures & Analysis</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-6">Implement arrays, linked lists, stacks, queues, trees (BST, AVL), graph algorithms, and visual searching & sorting.</p>
+                                </div>
+                                <button onclick="switchView('subject-ds')" class="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 dark:bg-emerald-950/30 dark:hover:bg-emerald-950/60 dark:text-emerald-400 font-bold py-2.5 rounded-xl text-xs transition active:scale-95">Open Classroom</button>
+                            </div>
+
+                            <div class="glass glass-glow rounded-2xl p-6 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:scale-[1.02] hover:shadow-md transition-all duration-300">
+                                <div>
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div class="px-2.5 py-1 text-xs font-semibold text-amber-700 bg-amber-50 rounded-lg dark:bg-amber-950/40 dark:text-amber-300">UNIT 303</div>
+                                        <div class="text-xs font-bold text-slate-400">Quiz Completed: <span id="dash-p-cost">0%</span></div>
+                                    </div>
+                                    <h4 class="font-extrabold text-lg text-slate-800 dark:text-white mb-2 leading-snug">Comp Oriented Statistical Techniques</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-6">Formulate regression models, calculate Karl Pearson correlation, discrete & continuous probability distributions, and statistical tests.</p>
+                                </div>
+                                <button onclick="switchView('subject-cost')" class="w-full bg-amber-50 hover:bg-amber-100 text-amber-600 dark:bg-amber-950/30 dark:hover:bg-amber-950/60 dark:text-amber-400 font-bold py-2.5 rounded-xl text-xs transition active:scale-95">Open Classroom</button>
+                            </div>
+
+                            <div class="glass glass-glow rounded-2xl p-6 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:scale-[1.02] hover:shadow-md transition-all duration-300">
+                                <div>
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div class="px-2.5 py-1 text-xs font-semibold text-sky-700 bg-sky-50 rounded-lg dark:bg-sky-950/40 dark:text-sky-300">UNIT 304</div>
+                                        <div class="text-xs font-bold text-slate-400">Quiz Completed: <span id="dash-p-cn">0%</span></div>
+                                    </div>
+                                    <h4 class="font-extrabold text-lg text-slate-800 dark:text-white mb-2 leading-snug">Computer Networks</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-6">Deconstruct OSI and TCP/IP protocol stack models, IP Subnetting networks, routing rules, sliding window mechanics, and DNS routing.</p>
+                                </div>
+                                <button onclick="switchView('subject-cn')" class="w-full bg-sky-50 hover:bg-sky-100 text-sky-600 dark:bg-sky-950/30 dark:hover:bg-sky-950/60 dark:text-sky-400 font-bold py-2.5 rounded-xl text-xs transition active:scale-95">Open Classroom</button>
+                            </div>
+
+                            <div class="glass glass-glow rounded-2xl p-6 border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:scale-[1.02] hover:shadow-md transition-all duration-300">
+                                <div>
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div class="px-2.5 py-1 text-xs font-semibold text-rose-700 bg-rose-50 rounded-lg dark:bg-rose-950/40 dark:text-rose-300">UNIT 305</div>
+                                        <div class="text-xs font-bold text-slate-400">Quiz Completed: <span id="dash-p-es">0%</span></div>
+                                    </div>
+                                    <h4 class="font-extrabold text-lg text-slate-800 dark:text-white mb-2 leading-snug">Embedded Systems</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-6">Understand 8051 Microcontroller Architecture, core embedded concepts, hardware peripheral interfaces, and Real-Time Systems (RTOS).</p>
+                                </div>
+                                <button onclick="switchView('subject-es')" class="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 dark:bg-rose-950/30 dark:hover:bg-rose-950/60 dark:text-rose-400 font-bold py-2.5 rounded-xl text-xs transition active:scale-95">Open Classroom</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm hover:border-nkc-gold/40 transition-all duration-300">
+                        <div class="flex items-start space-x-4">
+                            <span class="p-3 bg-red-100 dark:bg-red-950/30 text-red-600 rounded-xl mt-1 animate-pulse">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <div>
+                                <h4 class="font-extrabold text-lg tracking-tight">NKC Student Study Hub Notice</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">Studying at the Bhavishya Bharat Campus or waiting in the canteen? Use this mobile-friendly portal to review core concepts, analyze stack pushes in the lab, or take statistical regressions on the go before your external exams!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-subject-container" class="hidden slide-in space-y-6">
+                    <div class="relative overflow-hidden rounded-3xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 md:p-8 shadow-sm">
+                        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <span class="bg-nkc-gold text-nkc-navy text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider mb-2 inline-block" id="sub-page-code">UNIT 301</span>
+                                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 dark:text-white" id="sub-page-title">Advanced Database Management System</h2>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1" id="sub-page-desc">Subject material aligned with NKC Semester 3 Autonomous Syllabi.</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-12 h-12 rounded-full border-4 border-slate-200 dark:border-slate-800 flex items-center justify-center font-bold text-sm shadow-inner" id="sub-progress-circle">0%</div>
+                                <div class="text-xs">
+                                    <p class="font-bold text-slate-700 dark:text-slate-200">Practice Score</p>
+                                    <p class="text-slate-400" id="sub-progress-text">Not Attempted</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex border-b border-slate-200 dark:border-slate-800 overflow-x-auto">
+                        <button onclick="switchSubjectTab('notes')" id="tab-btn-notes" class="px-6 py-3.5 text-sm font-bold border-b-2 border-nkc-blue text-nkc-blue dark:text-blue-400 dark:border-blue-400 transition-colors flex items-center space-x-2 shrink-0">
+                            <span>📖 Lecture Notes</span>
+                        </button>
+                        <button onclick="switchSubjectTab('visual')" id="tab-btn-visual" class="px-6 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors flex items-center space-x-2 shrink-0">
+                            <span>⚡ Interactive Lab</span>
+                        </button>
+                        <button onclick="switchSubjectTab('quiz')" id="tab-btn-quiz" class="px-6 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors flex items-center space-x-2 shrink-0">
+                            <span>📝 Chapter Quiz</span>
+                        </button>
+                    </div>
+
+                    <div id="sub-tab-notes" class="space-y-6">
+                        <div id="sub-notes-content" class="space-y-8"></div>
+                    </div>
+
+                    <div id="sub-tab-visual" class="hidden space-y-6">
+                        <div class="glass border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-sm">
+                            <h3 class="text-xl font-extrabold tracking-tight mb-2" id="lab-title">Interactive Subject Lab</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-6" id="lab-description">Practice the core principles practically with this live visual planning board tool.</p>
+                            
+                            <div id="lab-slot-container" class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 min-h-[300px]"></div>
+                        </div>
+                    </div>
+
+                    <div id="sub-tab-quiz" class="hidden space-y-6">
+                        <div class="glass border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-8 shadow-sm">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h3 class="text-xl font-bold tracking-tight">Chapter Self-Assessment</h3>
+                                    <p class="text-xs text-slate-500">Test your mastery of the topics in this subject. No time limit.</p>
+                                </div>
+                                <div class="px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300" id="quiz-question-counter">Question 1 of 5</div>
+                            </div>
+
+                            <div id="subject-quiz-area" class="space-y-6"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-mock-test" class="hidden slide-in space-y-6">
+                    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-900 via-indigo-950 to-slate-900 text-white p-6 md:p-8 shadow-sm">
+                        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-2">Semester 3 Combined Mock Examination</h2>
+                        <p class="text-slate-300 text-sm max-w-2xl">This combined test dynamically extracts 15 challenging exam-grade questions spanning ADBMS, Data Structures, COST, CN, and ES. Simulates autonomous final question structures.</p>
+                    </div>
+
+                    <div id="mock-intro" class="glass border border-slate-200 dark:border-slate-800 rounded-3xl p-6 text-center max-w-xl mx-auto space-y-6">
+                        <div class="w-16 h-16 bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 rounded-full flex items-center justify-center mx-auto shadow-md">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-xl">Exam Instructions</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">The mock contains 15 Multiple Choice Questions. Read each statement carefully. Correct answers receive 4 marks, with no negative markings. You will have a live countdown of 15 minutes.</p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 border-t border-b border-slate-100 dark:border-slate-800 py-4 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                            <div>
+                                <p class="text-xs text-slate-400">Total Questions</p>
+                                <p class="text-lg font-black text-slate-800 dark:text-white mt-1">15</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400">Time Limit</p>
+                                <p class="text-lg font-black text-slate-800 dark:text-white mt-1">15 Mins</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400">Passing Score</p>
+                                <p class="text-lg font-black text-slate-800 dark:text-white mt-1">40%</p>
+                            </div>
+                        </div>
+                        <button onclick="startMockExam()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3.5 rounded-2xl text-sm transition-all shadow-lg hover:shadow-purple-500/20 active:scale-95">Begin Mock Exam</button>
+                    </div>
+
+                    <div id="mock-test-area" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2 glass border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-8 space-y-6">
+                            <div class="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800">
+                                <span class="px-3 py-1.5 rounded-full bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 font-bold text-xs" id="mock-sub-label">ADBMS QUESTION</span>
+                                <span class="font-bold text-sm text-slate-500" id="mock-index-label">Question 1 of 15</span>
+                            </div>
+                            <div id="mock-question-display" class="space-y-6 min-h-[220px]"></div>
+                            <div class="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-slate-800">
+                                <button onclick="navigateMock(-1)" id="mock-prev-btn" class="px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 font-semibold text-sm transition text-slate-600 dark:text-slate-300">Previous</button>
+                                <button onclick="navigateMock(1)" id="mock-next-btn" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm transition shadow-md">Next</button>
+                            </div>
+                        </div>
+
+                        <div class="glass border border-slate-200 dark:border-slate-800 rounded-3xl p-6 space-y-6 h-fit">
+                            <div>
+                                <h4 class="font-bold text-slate-400 text-xs uppercase tracking-wider">Remaining Time</h4>
+                                <div class="text-3xl font-black text-slate-800 dark:text-white mt-1 font-mono tracking-tight" id="mock-timer">15:00</div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-400 text-xs uppercase tracking-wider mb-3">Question Tracker</h4>
+                                <div class="grid grid-cols-5 gap-2.5" id="mock-tracker-grid"></div>
+                            </div>
+                            <button onclick="submitMockExam()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl text-xs transition active:scale-95 shadow-lg shadow-red-500/10">Submit Examination</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-achievements" class="hidden slide-in space-y-6">
+                    <div class="glass border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-8 shadow-sm text-center max-w-2xl mx-auto space-y-6">
+                        <div class="w-20 h-20 bg-yellow-50 dark:bg-yellow-950/40 text-yellow-500 rounded-full flex items-center justify-center mx-auto shadow-md border-4 border-yellow-200/50">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-black text-slate-800 dark:text-white" id="cert-title">Your Accomplishments</h2>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Unlock certificates of study by scoring high scores in core chapter quizzes and the full semester mock.</p>
+                        </div>
+                        
+                        <div id="cert-card-container" class="hidden border-2 border-dashed border-slate-200 dark:border-slate-800 p-4 rounded-2xl bg-slate-50/50 dark:bg-slate-900/50">
+                            <div class="p-6 bg-white dark:bg-slate-950 rounded-xl border border-nkc-gold shadow-2xl relative text-center space-y-4">
+                                <div class="absolute inset-0 opacity-5 flex items-center justify-center pointer-events-none">
+                                    <div class="w-48 h-48 border-8 border-nkc-gold rounded-full flex items-center justify-center text-4xl font-extrabold text-nkc-gold">NKC</div>
+                                </div>
+                                
+                                <span class="text-[10px] tracking-widest text-nkc-gold font-bold uppercase block border-b border-nkc-gold/30 pb-2 max-w-[200px] mx-auto">CERTIFICATE OF MASTERY</span>
+                                <h4 class="font-extrabold text-xl font-serif text-slate-800 dark:text-white leading-tight">NAGINDAS KHANDWALA COLLEGE</h4>
+                                <p class="text-xs text-slate-400 italic font-serif">Autonomous College Under University of Mumbai</p>
+                                <p class="text-xs text-slate-600 dark:text-slate-300 mt-4">This document validates that</p>
+                                <h3 class="text-lg font-black tracking-wide text-slate-800 dark:text-white uppercase inline-block border-b-2 border-slate-200 dark:border-slate-800 px-6 py-1" id="cert-student-name">Guest Learner</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto leading-relaxed mt-2">has successfully attained proficiency in the complete course curriculum for <strong class="text-slate-700 dark:text-slate-200">BScIT Semester 3</strong> by demonstrating exceptional analytical knowledge across all core subjects during evaluation.</p>
+                                <div class="flex justify-between items-center pt-6 text-[10px] text-slate-400 font-mono">
+                                    <div>
+                                        <p class="border-t border-slate-200 dark:border-slate-800 pt-1 font-sans">E-Signature</p>
+                                        <p class="font-semibold text-nkc-navy dark:text-nkc-gold mt-1 font-serif">Academic Portal</p>
+                                    </div>
+                                    <div id="cert-score-display" class="font-bold text-slate-700 dark:text-slate-200">
+                                        Mock Score: 100%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="cert-placeholder" class="py-12 text-slate-400 dark:text-slate-500">
+                            <p class="text-sm">Complete the 15-question <strong class="text-slate-600 dark:text-slate-300">Final Combined Mock Exam</strong> with a passing score of 40% or higher to unlock and download your custom Academic Certificate.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentSubjectId = 'adbms';
+        let currentView = 'dashboard';
+        let activeTab = 'notes';
+        let isDarkMode = false;
+        
+        const studentState = {
+            scores: {
+                adbms: null,
+                ds: null,
+                cost: null,
+                cn: null,
+                es: null,
+                mock: null
+            },
+            name: "Guest Learner"
+        };
+
+        const syllabusData = {
+            adbms: {
+                code: "UNIT 301",
+                title: "Advanced Database Management System",
+                desc: "Equipping students with analytical database engineering skills.",
+                notes: [
+                    {
+                        title: "Unit I: Transaction Management, ACID Models & State Transitions",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                In modern Database Management Systems, a <strong>Transaction</strong> is defined as a logical, single unit of execution that contains one or more data manipulation commands (such as <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code>). To ensure that the database remains physically consistent and completely uncorrupted under concurrent execution schedules or unexpected system failures, every database execution schedule must strictly enforce the following four fundamental properties known collectively as the <strong>ACID Properties</strong>:
+                            </p>
+                            <ul class="list-disc pl-5 py-3 text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                                <li><strong>Atomicity:</strong> Refers to the robust 'all-or-nothing' paradigm. This guarantees that either all the transaction's statements are fully executed and modified permanently inside non-volatile memory, or the entire transaction is rolled back completely to its pre-execution state, ensuring no partial writes ever exist.</li>
+                                <li><strong>Consistency:</strong> Ensures that a transaction transfers the database from one valid, structurally consistent state that satisfies all integrity constraints (such as primary key uniqueness, foreign key relationships, and check constraints) to another equally consistent state.</li>
+                                <li><strong>Isolation:</strong> Ensures that concurrently executing transactions are invisible to one another. Intermediate, uncommitted state modifications made by one transaction are completely isolated from other concurrent active processes, preventing dirty reads and non-repeatable reads.</li>
+                                <li><strong>Durability:</strong> Guarantees that once a transaction successfully transitions into the committed state, all its changes are permanently written and recorded to stable, non-volatile storage. These modifications will not be lost, even in the event of subsequent operating system crashes, physical drive failures, or sudden electrical power cutoffs.</li>
+                            </ul>
+                            <div class="p-5 bg-slate-100 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300">
+                                <span class="font-bold uppercase text-amber-500 text-[10px] block mb-2">Detailed Transaction State Transitions</span>
+                                During its lifecycle, a transaction progresses through various distinct operational stages:
+                                <ul class="list-decimal pl-4 mt-2 space-y-1">
+                                    <li><strong>Active State:</strong> The transaction enters this state upon execution initialization and remains here while reading/writing data.</li>
+                                    <li><strong>Partially Committed State:</strong> This state is reached immediately after the final statement has been executed, but before the actual physical logs are flushed and synced on disk.</li>
+                                    <li><strong>Committed State:</strong> The transaction enters this state once all physical logs are committed to disk, finalizing all modifications permanently.</li>
+                                    <li><strong>Failed State:</strong> Entered if an error is detected or if normal execution cannot proceed due to structural issues.</li>
+                                    <li><strong>Aborted State:</strong> Entered after the database has successfully rolled back all changes to restore the system to its initial state.</li>
+                                </ul>
+                            </div>
+                        `
+                    },
+                    {
+                        title: "Unit II: Concurrency Control & The Two-Phase Locking (2PL) Protocol",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                When multiple users or system components read and write data simultaneously, the system requires a concurrency control mechanism to avoid conflict anomalies (e.g., lost updates, temporary view inconsistencies). The <strong>Two-Phase Locking (2PL) Protocol</strong> guarantees serializability by locking data items according to strict phase rules:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 text-xs">
+                                <div class="p-4 bg-indigo-50/50 dark:bg-slate-900 rounded-xl border border-indigo-100 dark:border-slate-800">
+                                    <p class="font-bold text-indigo-700 dark:text-indigo-400 mb-1">1. Growing Phase</p>
+                                    <p class="text-slate-500">In this phase, a transaction is permitted to acquire any necessary shared (read) or exclusive (write) locks on resources, but it is strictly forbidden from releasing any lock it currently holds.</p>
+                                </div>
+                                <div class="p-4 bg-pink-50/50 dark:bg-slate-900 rounded-xl border border-pink-100 dark:border-slate-800">
+                                    <p class="font-bold text-pink-700 dark:text-pink-400 mb-1">2. Shrinking Phase</p>
+                                    <p class="text-slate-500">In this phase, a transaction can release existing locks, but it cannot acquire any new locks on any database items, regardless of subsequent operations.</p>
+                                </div>
+                            </div>
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                Although standard 2PL guarantees serializable schedules, it remains vulnerable to cascading rollbacks—where aborting a single transaction necessitates rolling back multiple dependent concurrent transactions. To eliminate this issue, <strong>Strict 2PL</strong> requires that all exclusive (write) locks obtained by a transaction must be held continuously until the transaction completes (either commits or aborts).
+                            </p>
+                        `
+                    },
+                    {
+                        title: "Unit III: Log-Based Recovery Systems (Deferred vs. Immediate Updates)",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                To ensure durability, databases write execution records to logs on non-volatile storage. This allows the system to recover consistent states after unexpected failures. There are two primary log-based update strategies:
+                            </p>
+                            <ul class="list-disc pl-5 py-3 text-sm text-slate-600 dark:text-slate-400 space-y-3">
+                                <li><strong>Deferred Update (No-Undo/Redo):</strong> Updates are only written to the active cache during transaction execution. The actual database on disk is modified only after the transaction commits. If a crash occurs before the transaction commits, no changes are on disk, meaning no <code>UNDO</code> operations are required. The recovery manager only performs <code>REDO</code> operations for fully committed transactions found in the log.</li>
+                                <li><strong>Immediate Update (Undo/Redo):</strong> Modifications are written to both the cache and the disk during transaction execution. Since uncommitted changes can reside on disk, a system crash requires the recovery manager to perform <code>UNDO</code> operations on all transactions that were active but uncommitted at the time of failure. Completed transactions are reapplied using <code>REDO</code> operations.</li>
+                            </ul>
+                        `
+                    }
+                ],
+                quiz: [
+                    {
+                        q: "Which property of a transaction guarantees that concurrent transactions can execute without interference?",
+                        options: ["Atomicity", "Consistency", "Isolation", "Durability"],
+                        correct: 2,
+                        explanation: "Isolation ensures that the execution of concurrent transactions does not lead to any inconsistencies."
+                    },
+                    {
+                        q: "In the Two-Phase Locking (2PL) protocol, a transaction cannot acquire new locks once it enters which phase?",
+                        options: ["Growing Phase", "Shrinking Phase", "Deadlock Phase", "Active Phase"],
+                        correct: 1,
+                        explanation: "Once a transaction releases a single lock, it enters the Shrinking Phase where no new locks can be acquired."
+                    },
+                    {
+                        q: "Which recovery method requires both UNDO and REDO log operations?",
+                        options: ["Deferred Update", "Immediate Update", "Shadow Paging", "Checkpoints only"],
+                        correct: 1,
+                        explanation: "Immediate update can update the database on disk before committing (requires UNDO if aborted) and after (requires REDO if crashed before disk sync)."
+                    },
+                    {
+                        q: "In distributed databases, what does the CAP theorem stand for?",
+                        options: ["Consistency, Availability, Partition Tolerance", "Concurrency, Accessibility, Performance", "Consistency, Atomicity, Performance", "Capacity, Availability, Partitioning"],
+                        correct: 0,
+                        explanation: "CAP theorem states that a distributed data store can simultaneously provide at most two out of Consistency, Availability, and Partition Tolerance."
+                    },
+                    {
+                        q: "What type of lock allows multiple transactions to read a data item concurrently but blocks exclusive locks?",
+                        options: ["Exclusive Lock (X)", "Shared Lock (S)", "Intent Lock", "Deadlock"],
+                        correct: 1,
+                        explanation: "Shared Locks (S) allow multiple transactions to read a data item concurrently."
+                    }
+                ]
+            },
+            ds: {
+                code: "UNIT 302",
+                title: "Data Structures & Analysis",
+                desc: "Foundation for organizing and traversing algorithms effectively.",
+                notes: [
+                    {
+                        title: "Unit I: Linear Data Structures - Stacks and Queues",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                <strong>Stacks</strong> are linear collections governed by the <strong>LIFO (Last-In, First-Out)</strong> access model. Elements are added and removed from a single endpoint called the <strong>Top</strong>. The primary operations are <code>push(item)</code>, which inserts an element, and <code>pop()</code>, which removes the most recently added element. Stacks are used in compilers for parsing expressions (infix to postfix), backtracking algorithms, and managing system function calls.
+                            </p>
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400 mt-3">
+                                <strong>Queues</strong> utilize the <strong>FIFO (First-In, First-Out)</strong> model. Insertions occur at the <strong>Rear</strong>, while deletions occur at the <strong>Front</strong>. In simple linear queues, memory locations cannot be reused after deletions occur. To resolve this, <strong>Circular Queues</strong> connect the last position back to the first, using the modulo operator to determine positions: <code>(rear + 1) % MAX</code>.
+                            </p>
+                            <div class="p-4 bg-slate-100 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 mt-3">
+                                <strong>High-Level Applications:</strong> Stacks are essential for managing recursion, undo buffers, and evaluating mathematical syntax. Queues are used in printer buffers, scheduling algorithms, and routing packets through network routers.
+                            </div>
+                        `
+                    },
+                    {
+                        title: "Unit II: Non-Linear Data Structures - Binary Search Trees & AVL Trees",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                A <strong>Binary Search Tree (BST)</strong> is a node-based binary tree structure where the left subtree of a node contains only keys lesser than the node's key, and the right subtree contains keys greater. While BSTs offer $O(\log n)$ search efficiency in balanced scenarios, skewed insertions (e.g., sorted inputs) can degrade performance to a linear $O(n)$ search time.
+                            </p>
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400 mt-3">
+                                <strong>AVL Trees</strong> address this limitation by maintaining balance. The height difference of children subtrees for any node must not exceed 1:
+                                $$BF = \\text{Height}(\\text{Left Subtree}) - \\text{Height}(\\text{Right Subtree}) \\in \\{-1, 0, 1\\}$$
+                                When insertions or deletions violate this balance, self-balancing rotations are performed:
+                            </p>
+                            <ul class="list-disc pl-5 py-2 text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                <li><strong>Single Rotations:</strong> Left-Left (LL) and Right-Right (RR) rotations.</li>
+                                <li><strong>Double Rotations:</strong> Left-Right (LR) and Right-Left (RL) rotations.</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        title: "Unit III: Sorting and Searching Algorithms Complexity Analysis",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                Understanding time complexity is critical when designing software systems:
+                            </p>
+                            <ul class="list-disc pl-5 py-3 text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                                <li><strong>Binary Search:</strong> A divide-and-conquer searching algorithm with a time complexity of $O(\log n)$. It requires pre-sorted collections to function.</li>
+                                <li><strong>Quick Sort:</strong> An in-place divide-and-conquer sorting algorithm that partitions arrays around a pivot element. Its average time complexity is $O(n \\log n)$, but degrades to $O(n^2)$ if pivots partition datasets unequally.</li>
+                                <li><strong>Merge Sort:</strong> A stable, external divide-and-conquer sorting algorithm. It maintains a consistent $O(n \\log n)$ time complexity across all cases but requires $O(n)$ auxiliary space to merge sub-arrays.</li>
+                            </ul>
+                        `
+                    }
+                ],
+                quiz: [
+                    {
+                        q: "Which of the following data structures operates on a Last-In-First-Out (LIFO) access sequence?",
+                        options: ["Queue", "Singly Linked List", "Stack", "Binary Search Tree"],
+                        correct: 2,
+                        explanation: "Stacks operate on LIFO, where elements added last are popped out first."
+                    },
+                    {
+                        q: "What is the maximum allowed balance factor difference of nodes in an AVL Tree?",
+                        options: ["0", "1", "2", "Unlimited"],
+                        correct: 1,
+                        explanation: "AVL Trees keep a balanced structure where the height difference is at most 1 (i.e., BF is -1, 0, or 1)."
+                    },
+                    {
+                        q: "What is the worst-case time complexity of Quick Sort?",
+                        options: ["O(n log n)", "O(n)", "O(n²)", "O(1)"],
+                        correct: 2,
+                        explanation: "In worst-case scenarios, such as when the array is already sorted, Quick Sort takes O(n²)."
+                    },
+                    {
+                        q: "Which graph traversal technique uses a Queue data structure to traverse nodes level by level?",
+                        options: ["Depth First Search (DFS)", "Breadth First Search (BFS)", "Kruskal's Algorithm", "Dijkstra's Algorithm"],
+                        correct: 1,
+                        explanation: "BFS uses a queue to visit neighboring vertices before exploring deeper paths."
+                    },
+                    {
+                        q: "What is the optimal search complexity on a balanced binary search tree with n nodes?",
+                        options: ["O(n)", "O(n log n)", "O(log n)", "O(1)"],
+                        correct: 2,
+                        explanation: "A balanced BST has a height of log n, allowing search paths to complete in O(log n) time."
+                    }
+                ]
+            },
+            cost: {
+                code: "UNIT 303",
+                title: "Computer Oriented Statistical Techniques",
+                desc: "Applying statistical computing theories and probability distributions.",
+                notes: [
+                    {
+                        title: "Unit I: Correlation, Covariance, and Linear Regression Analysis",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                <strong>Karl Pearson's Correlation Coefficient ($r$)</strong> measures the strength and direction of the linear relationship between two continuous variables. The value of $r$ is bounded between $-1$ and $+1$:
+                                $$r = \\frac{N\\sum XY - \\sum X\\sum Y}{\\sqrt{[N\\sum X^2 - (\\sum X)^2][N\\sum Y^2 - (\\sum Y)^2]}}$$
+                            </p>
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400 mt-3">
+                                <strong>Linear Regression:</strong> Helps predict the value of a dependent variable $Y$ based on an independent variable $X$. The regression line is calculated to minimize the sum of squared residuals:
+                                $$Y - \\bar{Y} = b_{yx}(X - \\bar{X}) \\quad \\text{where } b_{yx} = r \\frac{\\sigma_y}{\\sigma_x}$$
+                                A positive correlation coefficient ($r > 0$) indicates that $Y$ increases as $X$ increases, whereas a negative correlation ($r < 0$) indicates an inverse relationship.
+                            </p>
+                        `
+                    },
+                    {
+                        title: "Unit II: Standard Probability Distributions",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                Statistical models rely on discrete and continuous distributions to represent real-world events:
+                            </p>
+                            <ul class="list-disc pl-5 py-3 text-sm text-slate-600 dark:text-slate-400 space-y-3">
+                                <li><strong>Binomial Distribution:</strong> Models discrete events with binary outcomes (success or failure) over $n$ independent trials. The probability of obtaining exactly $x$ successes is:
+                                $$P(X=x) = \\binom{n}{x} p^x q^{n-x} \\quad \\text{where } q = 1 - p$$</li>
+                                <li><strong>Poisson Distribution:</strong> Models the number of events occurring within a fixed interval of time or space. It is often used for rare events:
+                                $$P(X=x) = \\frac{e^{-\\lambda}\\lambda^x}{x!}$$</li>
+                                <li><strong>Normal Distribution:</strong> A continuous, symmetrical bell-shaped probability distribution centered around its mean $\\mu$ with a variance $\\sigma^2$.</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        title: "Unit III: Hypothesis Testing & Statistical Significance Tests",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                Hypothesis testing is used to evaluate statements about population parameters using sample statistics. The process begins by defining a null hypothesis ($H_0$) and an alternative hypothesis ($H_1$).
+                            </p>
+                            <ul class="list-disc pl-5 py-3 text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                                <li><strong>Z-Test:</strong> Used for large samples ($n > 30$) or when the population variance is known.</li>
+                                <li><strong>T-Test:</strong> Used for small samples ($n \\le 30$) where the population variance is unknown.</li>
+                                <li><strong>Chi-Square Test:</strong> A non-parametric test used to assess goodness-of-fit or the independence of categorical variables in contingency tables.</li>
+                            </ul>
+                        `
+                    }
+                ],
+                quiz: [
+                    {
+                        q: "What is the range of Karl Pearson's Correlation Coefficient (r)?",
+                        options: ["0 to 1", "-1 to +1", "-infinity to +infinity", "0 to +infinity"],
+                        correct: 1,
+                        explanation: "Pearson's correlation coefficient is always bounded between -1 (perfect negative relationship) and +1 (perfect positive relationship)."
+                    },
+                    {
+                        q: "If the mean of a Poisson distribution is 4, what is its variance?",
+                        options: ["2", "4", "16", "8"],
+                        correct: 1,
+                        explanation: "For a Poisson distribution, the mean and variance are equal (Mean = Variance = λ)."
+                    },
+                    {
+                        q: "Which test is used when testing the hypothesis for small samples (n ≤ 30) with unknown population variance?",
+                        options: ["z-test", "t-test", "Chi-Square test", "F-test"],
+                        correct: 1,
+                        explanation: "Student's t-test is specifically formulated for smaller samples (n ≤ 30)."
+                    },
+                    {
+                        q: "What are Type I and Type II errors in hypothesis testing?",
+                        options: ["Rejecting H0 when H0 is true; Accepting H0 when H0 is false", "Accepting H0 when H0 is true; Rejecting H0 when H0 is false", "Rejecting H1 when H1 is true; Rejecting H0 when H0 is false", "Both represent the same errors"],
+                        correct: 0,
+                        explanation: "Type I error (α) is rejecting H0 when it is true. Type II error (β) is accepting H0 when it is false."
+                    },
+                    {
+                        q: "In a binomial distribution, if n = 10 and p = 0.5, what is the mean of the distribution?",
+                        options: ["2.5", "5.0", "1.0", "10.0"],
+                        correct: 1,
+                        explanation: "The mean of a Binomial Distribution is calculated as Mean = n * p = 10 * 0.5 = 5.0."
+                    }
+                ]
+            },
+            cn: {
+                code: "UNIT 304",
+                title: "Computer Networks",
+                desc: "Architecture of internetworks, protocol routing, and packet designs.",
+                notes: [
+                    {
+                        title: "Unit I: Reference Models - OSI vs. TCP/IP Architecture Stack",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                Network communications rely on structured reference models. The <strong>OSI Model</strong> defines seven layers, while the <strong>TCP/IP Model</strong> consolidates these into four or five layers:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs my-3">
+                                <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+                                    <p class="font-bold text-slate-800 dark:text-white mb-2">OSI Model (7 Layers)</p>
+                                    <ol class="list-decimal pl-4 space-y-1">
+                                        <li>Physical Layer: Handles raw bits and electrical interfaces.</li>
+                                        <li>Data Link Layer: Handles error correction and MAC framing.</li>
+                                        <li>Network Layer: Handles IP routing and logical addressing.</li>
+                                        <li>Transport Layer: Handles flow control (TCP/UDP segments).</li>
+                                        <li>Session Layer: Establishes and manages connections.</li>
+                                        <li>Presentation Layer: Handles data encryption and formatting.</li>
+                                        <li>Application Layer: Direct interaction with network software.</li>
+                                    </ol>
+                                </div>
+                                <div class="p-4 bg-slate-100 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+                                    <p class="font-bold text-slate-800 dark:text-white mb-2">TCP/IP Model (5 Layers)</p>
+                                    <ol class="list-decimal pl-4 space-y-1">
+                                        <li>Physical Layer: Bit transmission.</li>
+                                        <li>Data Link Layer: Local frame transfers.</li>
+                                        <li>Network Layer: IP packet routing.</li>
+                                        <li>Transport Layer: End-to-end reliability (TCP/UDP).</li>
+                                        <li>Application Layer: Combines application, presentation, and session layers.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: "Unit II: IP Addressing, Subnet Masks, and Subnetting Calculations",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                An IPv4 address is a 32-bit logical address divided into network and host portions. Historically, addresses were allocated using classful networks:
+                            </p>
+                            <ul class="list-disc pl-5 py-3 text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                <li><strong>Class A:</strong> Addresses 1.0.0.0 to 126.255.255.255 with default mask /8 (255.0.0.0).</li>
+                                <li><strong>Class B:</strong> Addresses 128.0.0.0 to 191.255.255.255 with default mask /16 (255.255.0.0).</li>
+                                <li><strong>Class C:</strong> Addresses 192.0.0.0 to 223.255.255.255 with default mask /24 (255.255.255.0).</li>
+                            </ul>
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400 mt-2">
+                                <strong>Subnetting:</strong> Allows engineers to split a large network into smaller, more efficient subnets. By borrowing bits from the host portion, organizations can optimize IP allocation, reduce broadcast traffic, and improve security.
+                            </p>
+                        `
+                    },
+                    {
+                        title: "Unit III: Sliding Window Flow Control (Stop-and-Wait, GBN, and Selective Repeat)",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                Flow control mechanisms prevent fast senders from overwhelming slow receivers. Under sliding window protocols, the sender can transmit multiple packets before requiring an acknowledgment (ACK):
+                            </p>
+                            <ul class="list-disc pl-5 py-3 text-sm text-slate-600 dark:text-slate-400 space-y-3">
+                                <li><strong>Stop-and-Wait:</strong> The sender transmits a single packet and must wait for its corresponding acknowledgment before sending the next one. This method is simple but has low channel utilization.</li>
+                                <li><strong>Go-Back-N (GBN):</strong> Allows the sender to transmit up to $N$ packets before receiving an acknowledgment. If a packet is lost, the receiver discards all subsequent packets, requiring the sender to retransmit the lost packet and all packets sent after it.</li>
+                                <li><strong>Selective Repeat:</strong> The sender transmits up to $N$ packets. The receiver accepts out-of-order packets and buffers them. The sender only retransmits the specific packets that were lost or corrupted.</li>
+                            </ul>
+                        `
+                    }
+                ],
+                quiz: [
+                    {
+                        q: "Which layer of the OSI model is responsible for logical routing, logical addressing, and path determination?",
+                        options: ["Data Link Layer", "Transport Layer", "Network Layer", "Session Layer"],
+                        correct: 2,
+                        explanation: "The Network Layer is responsible for routing, IP addressing, and path determination."
+                    },
+                    {
+                        q: "What is the standard subnet mask for a default Class C IP address?",
+                        options: ["255.0.0.0", "255.255.0.0", "255.255.255.0", "255.255.255.255"],
+                        correct: 2,
+                        explanation: "Class C networks have a /24 subnet mask, which translates to 255.255.255.0."
+                    },
+                    {
+                        q: "Which sliding window protocol retransmits ONLY the frame that was lost or damaged?",
+                        options: ["Stop-and-Wait", "Go-Back-N", "Selective Repeat", "None of the above"],
+                        correct: 2,
+                        explanation: "Selective Repeat selectively retransmits only the failed frame, maximizing throughput efficiency."
+                    },
+                    {
+                        q: "What port number is standard for the Domain Name System (DNS)?",
+                        options: ["80", "443", "53", "25"],
+                        correct: 2,
+                        explanation: "DNS uses UDP port 53 for standard name resolution queries."
+                    },
+                    {
+                        q: "Which of the following describes the function of the ARP protocol?",
+                        options: ["Maps Domain names to IP addresses", "Resolves IP addresses to MAC addresses", "Ensures end-to-end transport delivery", "Translates Private IPs to Public IPs"],
+                        correct: 1,
+                        explanation: "Address Resolution Protocol (ARP) translates 32-bit IP addresses into physical MAC addresses."
+                    }
+                ]
+            },
+            es: {
+                code: "UNIT 305",
+                title: "Embedded Systems",
+                desc: "Microcontrollers, RTOS designs, and firmware physical computing.",
+                notes: [
+                    {
+                        title: "Unit I: Core Embedded Concepts (Microprocessor vs. Microcontroller)",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                An <strong>Embedded System</strong> is a dedicated computer system designed to perform a specific, predefined task within a larger mechanical or electrical system. Unlike general-purpose computers, embedded systems have strict physical size, cost, and power constraints:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs my-3">
+                                <div class="p-4 bg-rose-50/40 dark:bg-slate-900 rounded-xl border border-rose-100 dark:border-slate-800">
+                                    <p class="font-bold text-rose-700 dark:text-rose-400 mb-1">Microprocessor (MPU)</p>
+                                    <p class="text-slate-500">A general-purpose CPU on a single chip. It contains no internal RAM, ROM, or I/O peripherals, requiring external interface buses to connect to these components.</p>
+                                </div>
+                                <div class="p-4 bg-amber-50/40 dark:bg-slate-900 rounded-xl border border-amber-100 dark:border-slate-800">
+                                    <p class="font-bold text-amber-700 dark:text-amber-400 mb-1">Microcontroller (MCU)</p>
+                                    <p class="text-slate-500">An integrated chip containing a CPU, RAM, ROM, general-purpose I/O ports, timers, and serial interfaces on a single silicon die. MCU architectures are optimized for task-specific control applications.</p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: "Unit II: 8051 Microcontroller Architecture & Internal Registers",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                The standard <strong>8051 Microcontroller</strong> is an 8-bit Harvard architecture controller developed by Intel. Harvard architecture uses physically separate memory paths for instructions (Program Memory) and data (Data Memory):
+                            </p>
+                            <ul class="list-disc pl-5 py-3 text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                <li>4 KB internal ROM, used for storing code.</li>
+                                <li>128 Bytes internal RAM, used for data storage.</li>
+                                <li>Four 8-bit bidirectional I/O Ports ($P0, P1, P2, P3$).</li>
+                                <li>Accumulator (A) and B registers, used for math and logic operations.</li>
+                                <li>Program Counter (PC) and Data Pointer (DPTR) registers.</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        title: "Unit III: Real-Time Operating Systems (RTOS) Scheduling Paradigms",
+                        content: `
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                A <strong>Real-Time Operating System (RTOS)</strong> is a multitasking operating system optimized for applications that require deterministic response times. Meeting deadline constraints is critical:
+                            </p>
+                            <ul class="list-disc pl-5 py-3 text-sm text-slate-600 dark:text-slate-400 space-y-3">
+                                <li><strong>Hard Real-Time:</strong> Missing a deadline leads to critical system failures (e.g., medical devices, anti-lock brakes).</li>
+                                <li><strong>Soft Real-Time:</strong> Deadlines are critical but occasional misses are acceptable (e.g., video playback, game engines).</li>
+                            </ul>
+                            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                Key features of an RTOS include deterministic task scheduling (using Preemptive Priority or Round Robin algorithms), semaphores and mutexes for task synchronization, and minimal context-switching latency.
+                            </p>
+                        `
+                    }
+                ],
+                quiz: [
+                    {
+                        q: "Which of the following is a primary characteristic of a Microcontroller compared to a general Microprocessor?",
+                        options: ["External RAM and ROM are mandatory", "CPU, RAM, ROM, and I/O are integrated on one chip", "Much higher processing power", "Optimized for multitasking desktop applications"],
+                        correct: 1,
+                        explanation: "Microcontrollers integrate the core processor, RAM, ROM, and I/O peripherals onto a single microchip."
+                    },
+                    {
+                        q: "How many bytes of internal RAM are present in the standard 8051 microcontroller?",
+                        options: ["128 Bytes", "4 KB", "256 Bytes", "64 KB"],
+                        correct: 0,
+                        explanation: "The classic 8051 microcontroller has 128 bytes of internal data RAM."
+                    },
+                    {
+                        q: "Which operating system scheduling criteria is most critical for a Real-Time Operating System (RTOS)?",
+                        options: ["Throughput rate", "Average response time", "Predictability and determinism", "Fair CPU sharing"],
+                        correct: 2,
+                        explanation: "An RTOS requires absolute determinism and predictability to guarantee execution before strict deadlines."
+                    },
+                    {
+                        q: "What hardware component handles logical synchronization, mutual exclusion, and task coordination in RTOS frameworks?",
+                        options: ["Task Control Blocks (TCBs)", "Semaphores/Mutexes", "ALU Registers", "Program Counter"],
+                        correct: 1,
+                        explanation: "Semaphores and Mutexes are standard RTOS tools used to synchronize access and prevent resource conflicts."
+                    },
+                    {
+                        q: "Which 8051 port does not have internal pull-up resistors and requires external pull-ups to function as an input/output?",
+                        options: ["Port 0", "Port 1", "Port 2", "Port 3"],
+                        correct: 0,
+                        explanation: "Port 0 of the 8051 has open-drain structures and lacks internal pull-up resistors."
+                    }
+                ]
+            }
+        };
+
+        const mockQuestions = [
+            {
+                q: "What property refers to the 'all-or-nothing' execution guarantee of transactional processes?",
+                options: ["Consistency", "Atomicity", "Durability", "Isolation"],
+                correct: 1,
+                sub: "ADBMS"
+            },
+            {
+                q: "What protocol resolves concurrency conflicts by forcing transactional steps into growing and shrinking stages?",
+                options: ["Time-Stamp Protocol", "Strict Two-Phase Locking (2PL)", "Two-Phase Commit (2PC)", "Lock-Unlock Phase"],
+                correct: 1,
+                sub: "ADBMS"
+            },
+            {
+                q: "Which recovery component is strictly used to restore a database to its last known consistent state following a crash?",
+                options: ["Buffer Cache", "Transaction Log", "System Schema", "Redundant Disk"],
+                correct: 1,
+                sub: "ADBMS"
+            },
+            {
+                q: "Which analytical searching scheme delivers an optimal time complexity of O(log n) on ordered indices?",
+                options: ["Linear Search", "Binary Search", "Hashing Table", "Tree Depth Traversals"],
+                correct: 1,
+                sub: "Data Structures"
+            },
+            {
+                q: "What self-balancing binary search tree maintains height balance differences of at most 1 across its subtrees?",
+                options: ["Binary Tree", "Red-Black Tree", "AVL Tree", "B-Tree"],
+                correct: 2,
+                sub: "Data Structures"
+            },
+            {
+                q: "Which primitive structure follows the strict Last-In-First-Out (LIFO) model of resource manipulation?",
+                options: ["FIFO Queue", "Singly Linked List", "Stack", "Circular Queue"],
+                correct: 2,
+                sub: "Data Structures"
+            },
+            {
+                q: "What statistical coefficient reflects a perfectly inverse linear correlation between two datasets?",
+                options: ["r = 0", "r = 1", "r = -1", "r = +0.5"],
+                correct: 2,
+                sub: "COST"
+            },
+            {
+                q: "If the mean of a binomial distribution is given as 6 and variance is 3, what is the value of parameter 'p'?",
+                options: ["p = 0.5", "p = 0.25", "p = 0.1", "p = 0.75"],
+                correct: 0,
+                sub: "COST"
+            },
+            {
+                q: "Which probability model represents occurrences of random independent events in a fixed interval of space or time?",
+                options: ["Binomial Distribution", "Poisson Distribution", "Normal Distribution", "Hypothetical Distribution"],
+                correct: 1,
+                sub: "COST"
+            },
+            {
+                q: "Which OSI reference stack level establishes packet routing paths and performs logical addressing?",
+                options: ["Data Link Layer", "Physical Layer", "Network Layer", "Transport Layer"],
+                correct: 2,
+                sub: "Computer Networks"
+            },
+            {
+                q: "How many host addresses are usable in a default Class C subnet mask (/24)?",
+                options: ["256", "254", "512", "128"],
+                correct: 1,
+                sub: "Computer Networks"
+            },
+            {
+                q: "Which error control configuration relies on feedback acknowledgements to selectively request retransmissions of lost packets?",
+                options: ["Parity Bit check", "CRC verification", "Sliding Window Flow Control Protocols", "Hamming distance calculation"],
+                correct: 2,
+                sub: "Computer Networks"
+            },
+            {
+                q: "Which design concept is a unique trademark characterizing an Embedded System compared to general-purpose computing platforms?",
+                options: ["Requires massive hard drives", "Operates tasks under predictable real-time constraint deadlines", "Always performs visual interfaces", "Optimized exclusively for game development"],
+                correct: 1,
+                sub: "Embedded Systems"
+            },
+            {
+                q: "How many 8-bit ports are standardly present in an 8051 Microcontroller chip structure?",
+                options: ["2 Ports", "4 Ports", "6 Ports", "8 Ports"],
+                correct: 1,
+                sub: "Embedded Systems"
+            },
+            {
+                q: "Which task scheduler paradigm immediately executes the highest priority task ready for CPU time?",
+                options: ["Round Robin Scheduler", "First-In-First-Out Scheduler", "Preemptive Priority Scheduler", "Shortest Job First"],
+                correct: 2,
+                sub: "Embedded Systems"
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let selectedAnswers = [];
+        
+        let mockInProgress = false;
+        let mockQuestionIndex = 0;
+        let mockAnswers = Array(15).fill(null);
+        let mockTimerInterval = null;
+        let mockTimeRemaining = 900;
+
+        window.onload = function() {
+            updateUIMetrics();
+            switchView('dashboard');
+            
+            document.getElementById('student-name').addEventListener('input', function(e) {
+                studentState.name = e.target.value.trim() || "Guest Learner";
+                document.getElementById('cert-student-name').innerText = studentState.name;
+                
+                const initials = studentState.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+                document.getElementById('profile-avatar').innerText = initials || "SL";
+            });
+        };
+
+        function showToast(title, desc, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            const tTitle = document.getElementById('toast-title');
+            const tDesc = document.getElementById('toast-desc');
+
+            tTitle.innerText = title;
+            tDesc.innerText = desc;
+
+            if (type === 'success') {
+                icon.className = "p-1 rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400";
+                icon.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+            } else {
+                icon.className = "p-1 rounded-full bg-red-100 text-red-600 dark:bg-red-950/50 dark:text-red-400";
+                icon.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>';
+            }
+
+            toast.classList.remove('hidden', 'translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }, 3500);
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+            }
+        }
+
+        function toggleDarkMode() {
+            const root = document.documentElement;
+            isDarkMode = !isDarkMode;
+            if (isDarkMode) {
+                root.classList.add('dark');
+            } else {
+                root.classList.remove('dark');
+            }
+        }
+
+        function switchView(viewId) {
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            
+            const views = ['view-dashboard', 'view-subject-container', 'view-mock-test', 'view-achievements'];
+            views.forEach(v => document.getElementById(v).classList.add('hidden'));
+
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.className = "nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 hover:bg-slate-800/60 text-slate-300 hover:text-white";
+            });
+
+            if (viewId === 'dashboard') {
+                document.getElementById('view-dashboard').classList.remove('hidden');
+                document.getElementById('page-title').innerText = "Student Hub Dashboard";
+                navItems[0].className = "nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 bg-slate-800 text-white font-semibold shadow-inner border-l-4 border-nkc-gold";
+            } else if (viewId.startsWith('subject-')) {
+                const subKey = viewId.split('-')[1];
+                currentSubjectId = subKey;
+                document.getElementById('view-subject-container').classList.remove('hidden');
+                
+                const subject = syllabusData[subKey];
+                document.getElementById('sub-page-code').innerText = subject.code;
+                document.getElementById('sub-page-title').innerText = subject.title;
+                document.getElementById('sub-page-desc').innerText = subject.desc;
+                document.getElementById('page-title').innerText = `${subject.title} (${subject.code})`;
+                
+                const subIndex = ['adbms', 'ds', 'cost', 'cn', 'es'].indexOf(subKey) + 1;
+                navItems[subIndex].className = "nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 bg-slate-800 text-white font-semibold shadow-inner border-l-4 border-nkc-gold";
+
+                loadSubjectNotes(subKey);
+                loadSubjectLab(subKey);
+                initializeSubjectQuiz(subKey);
+                updateSubjectProgressUI(subKey);
+                switchSubjectTab('notes');
+            } else if (viewId === 'mock-test') {
+                document.getElementById('view-mock-test').classList.remove('hidden');
+                document.getElementById('page-title').innerText = "Semester Combined Mock Exam";
+                navItems[6].className = "nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 bg-slate-800 text-white font-semibold shadow-inner border-l-4 border-nkc-gold";
+                
+                if (!mockInProgress) {
+                    document.getElementById('mock-intro').classList.remove('hidden');
+                    document.getElementById('mock-test-area').classList.add('hidden');
+                }
+            } else if (viewId === 'achievements') {
+                document.getElementById('view-achievements').classList.remove('hidden');
+                document.getElementById('page-title').innerText = "Honors & Achievements";
+                navItems[7].className = "nav-item flex items-center space-x-3 px-4 py-3 rounded-xl transition duration-200 bg-slate-800 text-white font-semibold shadow-inner border-l-4 border-nkc-gold";
+                updateCertificatesUI();
+            }
+
+            window.scrollTo(0, 0);
+        }
+
+        function switchSubjectTab(tabId) {
+            activeTab = tabId;
+            const tabs = ['notes', 'visual', 'quiz'];
+            tabs.forEach(t => {
+                document.getElementById(`sub-tab-${t}`).classList.add('hidden');
+                const btn = document.getElementById(`tab-btn-${t}`);
+                btn.className = "px-6 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors flex items-center space-x-2 shrink-0";
+            });
+
+            document.getElementById(`sub-tab-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+            
+            let themeColorClass = "border-nkc-blue text-nkc-blue dark:text-blue-400 dark:border-blue-400";
+            if (currentSubjectId === 'ds') themeColorClass = "border-emerald-500 text-emerald-600 dark:text-emerald-400 dark:border-emerald-400";
+            if (currentSubjectId === 'cost') themeColorClass = "border-amber-500 text-amber-600 dark:text-amber-400 dark:border-amber-400";
+            if (currentSubjectId === 'cn') themeColorClass = "border-sky-500 text-sky-600 dark:text-sky-400 dark:border-sky-400";
+            if (currentSubjectId === 'es') themeColorClass = "border-rose-500 text-rose-600 dark:text-rose-400 dark:border-rose-400";
+
+            activeBtn.className = `px-6 py-3.5 text-sm font-bold border-b-2 ${themeColorClass} transition-colors flex items-center space-x-2 shrink-0`;
+
+            if (tabId === 'notes' && window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function loadSubjectNotes(subKey) {
+            const container = document.getElementById('sub-notes-content');
+            container.innerHTML = '';
+
+            const notes = syllabusData[subKey].notes;
+            notes.forEach((unit, idx) => {
+                const section = document.createElement('div');
+                section.className = "glass rounded-3xl p-6 shadow-sm space-y-4 hover:border-indigo-500/20 transition-all duration-300";
+                section.innerHTML = `
+                    <h3 class="text-lg font-extrabold tracking-tight text-slate-800 dark:text-white flex items-center space-x-2">
+                        <span class="w-1.5 h-6 bg-indigo-500 rounded-full inline-block"></span>
+                        <span>${unit.title}</span>
+                    </h3>
+                    <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 text-sm leading-relaxed space-y-4">
+                        ${unit.content}
+                    </div>
+                `;
+                container.appendChild(section);
+            });
+        }
+
+        function initializeSubjectQuiz(subKey) {
+            currentQuizIndex = 0;
+            selectedAnswers = [];
+            renderQuizQuestion(subKey);
+        }
+
+        function renderQuizQuestion(subKey) {
+            const quizData = syllabusData[subKey].quiz;
+            const container = document.getElementById('subject-quiz-area');
+            const counter = document.getElementById('quiz-question-counter');
+
+            counter.innerText = `Question ${currentQuizIndex + 1} of ${quizData.length}`;
+
+            if (currentQuizIndex >= quizData.length) {
+                renderQuizResults(subKey);
+                return;
+            }
+
+            const item = quizData[currentQuizIndex];
+            container.innerHTML = `
+                <div class="space-y-4">
+                    <p class="font-extrabold text-base text-slate-800 dark:text-white">${item.q}</p>
+                    <div class="grid grid-cols-1 gap-3">
+                        ${item.options.map((opt, oIdx) => `
+                            <button onclick="selectQuizOption(${oIdx}, '${subKey}')" class="w-full text-left px-5 py-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 font-semibold text-sm transition-all duration-200 focus:ring-2 focus:ring-indigo-500 focus:outline-none flex items-center justify-between group">
+                                <span class="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${opt}</span>
+                                <div class="w-5 h-5 rounded-full border border-slate-300 dark:border-slate-700 group-hover:border-indigo-500 transition-colors"></div>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectQuizOption(optIdx, subKey) {
+            selectedAnswers.push(optIdx);
+            currentQuizIndex++;
+            renderQuizQuestion(subKey);
+        }
+
+        function renderQuizResults(subKey) {
+            const quizData = syllabusData[subKey].quiz;
+            const container = document.getElementById('subject-quiz-area');
+            const counter = document.getElementById('quiz-question-counter');
+            
+            counter.innerText = `Evaluation Completed`;
+
+            let scoreCount = 0;
+            quizData.forEach((q, idx) => {
+                if (selectedAnswers[idx] === q.correct) scoreCount++;
+            });
+
+            const percentScore = Math.round((scoreCount / quizData.length) * 100);
+            studentState.scores[subKey] = percentScore;
+
+            updateUIMetrics();
+            updateSubjectProgressUI(subKey);
+
+            container.innerHTML = `
+                <div class="text-center py-6 space-y-6 slide-in">
+                    <div class="w-20 h-20 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto text-3xl font-black border-4 border-emerald-200/50 shadow-lg shadow-emerald-500/10">
+                        ${percentScore}%
+                    </div>
+                    <div>
+                        <h4 class="font-extrabold text-xl">Self-Assessment Report</h4>
+                        <p class="text-sm text-slate-500 mt-1">You correctly answered ${scoreCount} out of ${quizData.length} items.</p>
+                    </div>
+
+                    <div class="text-left border-t border-slate-100 dark:border-slate-800 pt-6 space-y-4">
+                        <h5 class="font-bold text-sm uppercase tracking-wider text-slate-400">Review Solutions</h5>
+                        ${quizData.map((q, idx) => {
+                            const isCorrect = selectedAnswers[idx] === q.correct;
+                            return `
+                                <div class="p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-50/20 border-emerald-100 dark:border-emerald-950/40' : 'bg-red-50/20 border-red-100 dark:border-red-950/40'} text-xs space-y-2">
+                                    <div class="flex justify-between items-start">
+                                        <p class="font-bold text-slate-800 dark:text-white leading-relaxed">Question ${idx + 1}: ${q.q}</p>
+                                        <span class="font-bold uppercase tracking-wider ${isCorrect ? 'text-emerald-600' : 'text-red-500'}">[${isCorrect ? 'CORRECT' : 'INCORRECT'}]</span>
+                                    </div>
+                                    <p class="text-slate-500 dark:text-slate-400">Your selection: <strong class="text-slate-700 dark:text-slate-200">${q.options[selectedAnswers[idx]] || 'None'}</strong></p>
+                                    ${!isCorrect ? `<p class="text-slate-500 dark:text-slate-400">Correct Answer: <strong class="text-emerald-600">${q.options[q.correct]}</strong></p>` : ''}
+                                    <p class="text-[11px] text-indigo-500 italic bg-white dark:bg-slate-900 p-2.5 rounded-lg border border-slate-100 dark:border-slate-800/50 mt-2"><strong>Tip:</strong> ${q.explanation}</p>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <button onclick="initializeSubjectQuiz('${subKey}')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition duration-300 shadow-md hover:shadow-indigo-500/20 active:scale-95">Retry Quiz</button>
+                </div>
+            `;
+
+            showToast("Quiz Complete!", `You scored ${percentScore}%!`, percentScore >= 50 ? 'success' : 'error');
+        }
+
+        function startMockExam() {
+            mockInProgress = true;
+            mockQuestionIndex = 0;
+            mockAnswers = Array(15).fill(null);
+            mockTimeRemaining = 900;
+
+            document.getElementById('mock-intro').classList.add('hidden');
+            document.getElementById('mock-test-area').classList.remove('hidden');
+
+            renderMockQuestion();
+            renderMockTracker();
+
+            if (mockTimerInterval) clearInterval(mockTimerInterval);
+            mockTimerInterval = setInterval(() => {
+                mockTimeRemaining--;
+                const min = Math.floor(mockTimeRemaining / 60);
+                const sec = mockTimeRemaining % 60;
+                document.getElementById('mock-timer').innerText = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+
+                if (mockTimeRemaining <= 0) {
+                    clearInterval(mockTimerInterval);
+                    submitMockExam(true);
+                }
+            }, 1000);
+        }
+
+        function renderMockQuestion() {
+            const item = mockQuestions[mockQuestionIndex];
+            const display = document.getElementById('mock-question-display');
+            const subLabel = document.getElementById('mock-sub-label');
+            const idxLabel = document.getElementById('mock-index-label');
+
+            subLabel.innerText = `${item.sub} QUESTION`;
+            idxLabel.innerText = `Question ${mockQuestionIndex + 1} of 15`;
+
+            display.innerHTML = `
+                <div class="space-y-4 slide-in">
+                    <p class="font-extrabold text-base md:text-lg leading-relaxed text-slate-800 dark:text-white">${item.q}</p>
+                    <div class="grid grid-cols-1 gap-3 pt-2">
+                        ${item.options.map((opt, oIdx) => {
+                            const isSelected = mockAnswers[mockQuestionIndex] === oIdx;
+                            return `
+                                <button onclick="selectMockOption(${oIdx})" class="w-full text-left px-5 py-3.5 rounded-xl border ${isSelected ? 'border-purple-500 bg-purple-50/40 dark:bg-purple-950/20' : 'border-slate-200 dark:border-slate-800 hover:bg-purple-50/30 dark:hover:bg-purple-950/10'} font-semibold text-sm transition-all duration-200 flex items-center justify-between group">
+                                    <span class="${isSelected ? 'text-purple-700 dark:text-purple-300' : 'group-hover:text-purple-600'} transition-colors">${opt}</span>
+                                    <div class="w-5 h-5 rounded-full border ${isSelected ? 'border-purple-500 bg-purple-600' : 'border-slate-300 dark:border-slate-700 group-hover:border-purple-500'} flex items-center justify-center transition-colors">
+                                        ${isSelected ? '<div class="w-2 h-2 rounded-full bg-white"></div>' : ''}
+                                    </div>
+                                </button>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('mock-prev-btn').disabled = mockQuestionIndex === 0;
+            document.getElementById('mock-prev-btn').className = mockQuestionIndex === 0 ? "px-5 py-2.5 rounded-xl border border-slate-100 dark:border-slate-800 opacity-50 cursor-not-allowed text-xs font-semibold" : "px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 font-semibold text-xs transition text-slate-600 dark:text-slate-300";
+            
+            document.getElementById('mock-next-btn').innerText = mockQuestionIndex === 14 ? "Finish" : "Next";
+        }
+
+        function selectMockOption(oIdx) {
+            mockAnswers[mockQuestionIndex] = oIdx;
+            renderMockTracker();
+            renderMockQuestion();
+        }
+
+        function navigateMock(dir) {
+            if (dir === 1 && mockQuestionIndex === 14) {
+                submitMockExam();
+                return;
+            }
+            mockQuestionIndex = Math.max(0, Math.min(14, mockQuestionIndex + dir));
+            renderMockQuestion();
+        }
+
+        function jumpToMockQuestion(idx) {
+            mockQuestionIndex = idx;
+            renderMockQuestion();
+        }
+
+        function renderMockTracker() {
+            const grid = document.getElementById('mock-tracker-grid');
+            grid.innerHTML = '';
+
+            for (let i = 0; i < 15; i++) {
+                const isSelected = mockAnswers[i] !== null;
+                const isCurrent = mockQuestionIndex === i;
+                
+                let btnClass = "w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xs border transition-all duration-200 ";
+                if (isCurrent) {
+                    btnClass += "border-purple-600 bg-purple-600 text-white scale-110 shadow-md shadow-purple-500/20";
+                } else if (isSelected) {
+                    btnClass += "border-purple-300 bg-purple-50 text-purple-700 dark:border-purple-900 dark:bg-purple-950/30 dark:text-purple-300";
+                } else {
+                    btnClass += "border-slate-200 text-slate-400 hover:border-slate-300 dark:border-slate-800 dark:text-slate-500 hover:scale-105";
+                }
+
+                grid.innerHTML += `<button onclick="jumpToMockQuestion(${i})" class="${btnClass}">${i + 1}</button>`;
+            }
+        }
+
+        function submitMockExam(timeOut = false) {
+            if (mockTimerInterval) clearInterval(mockTimerInterval);
+            mockInProgress = false;
+
+            let scoreCount = 0;
+            mockQuestions.forEach((q, idx) => {
+                if (mockAnswers[idx] === q.correct) scoreCount++;
+            });
+
+            const percentScore = Math.round((scoreCount / 15) * 100);
+            studentState.scores.mock = percentScore;
+
+            updateUIMetrics();
+
+            const subLabel = document.getElementById('mock-sub-label');
+            const display = document.getElementById('mock-question-display');
+            const rightPane = document.getElementById('mock-test-area');
+
+            rightPane.className = "glass border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-8 space-y-6 max-w-xl mx-auto slide-in";
+            rightPane.innerHTML = `
+                <div class="text-center py-6 space-y-6">
+                    <div class="w-24 h-24 rounded-full bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 flex items-center justify-center mx-auto text-4xl font-black border-4 border-purple-200/50 shadow-lg shadow-purple-500/20">
+                        ${percentScore}%
+                    </div>
+                    <div>
+                        <h4 class="font-extrabold text-2xl tracking-tight">Mock Examination Concluded</h4>
+                        <p class="text-sm text-slate-500 mt-2">${timeOut ? 'Times Up! ' : ''}Correctly evaluated ${scoreCount} out of 15 concepts.</p>
+                        <p class="text-xs text-slate-400 mt-1">Passing requirement: 40%</p>
+                    </div>
+
+                    <div class="flex justify-center space-x-3">
+                        <button onclick="switchView('achievements')" class="bg-nkc-gold hover:bg-nkc-gold/80 text-nkc-navy font-extrabold px-6 py-3 rounded-xl text-xs transition active:scale-95 shadow-md">Get Certificate</button>
+                        <button onclick="startMockExam()" class="bg-purple-600 hover:bg-purple-700 text-white font-extrabold px-6 py-3 rounded-xl text-xs transition active:scale-95 shadow-md">Retake Exam</button>
+                    </div>
+
+                    <div class="border-t border-slate-100 dark:border-slate-800 pt-6 text-left space-y-4">
+                        <h5 class="font-bold text-sm uppercase text-slate-400">Question Performance Review</h5>
+                        ${mockQuestions.map((q, idx) => {
+                            const isCorrect = mockAnswers[idx] === q.correct;
+                            return `
+                                <div class="p-4 rounded-xl border ${isCorrect ? 'bg-emerald-50/25 border-emerald-100' : 'bg-red-50/25 border-red-100'} text-xs space-y-1">
+                                    <p class="font-bold text-slate-800 dark:text-white leading-relaxed">Concept ${idx + 1}: ${q.q}</p>
+                                    <div class="flex items-center space-x-2 mt-1.5 text-slate-500">
+                                        <span class="font-bold uppercase tracking-wider ${isCorrect ? 'text-emerald-600' : 'text-red-500'}">[${isCorrect ? 'CORRECT' : 'INCORRECT'}]</span>
+                                        <span>&bull;</span>
+                                        <span>Subject: ${q.sub}</span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-400 mt-1">Chosen Answer: ${q.options[mockAnswers[idx]] || 'None'}</p>
+                                    ${!isCorrect ? `<p class="text-[11px] text-emerald-600 font-semibold">Correct Answer: ${q.options[q.correct]}</p>` : ''}
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+
+            showToast("Mock Finalized!", `Completed mock examination with ${percentScore}%!`, percentScore >= 40 ? 'success' : 'error');
+        }
+
+        function updateUIMetrics() {
+            const subjectKeys = ['adbms', 'ds', 'cost', 'cn', 'es'];
+            let quizCount = 0;
+            let totalQuizScores = 0;
+
+            subjectKeys.forEach(key => {
+                const pLabel = document.getElementById(`dash-p-${key}`);
+                const score = studentState.scores[key];
+                if (score !== null) {
+                    pLabel.innerText = `${score}%`;
+                    pLabel.className = "text-xs font-bold text-indigo-500";
+                    quizCount++;
+                    totalQuizScores += score;
+                } else {
+                    pLabel.innerText = "0%";
+                    pLabel.className = "text-xs font-bold text-slate-400";
+                }
+            });
+
+            const readiness = quizCount > 0 ? Math.round(totalQuizScores / 5) : 0;
+            document.getElementById('dash-readiness').innerText = `${readiness}%`;
+
+            const mScore = studentState.scores.mock;
+            const mStatus = document.getElementById('dash-mock-status');
+            const mScoreDesc = document.getElementById('dash-mock-score');
+
+            if (mScore !== null) {
+                mStatus.innerText = `${mScore}% Score`;
+                mStatus.className = "text-2xl font-black mt-1 text-purple-600 dark:text-purple-400";
+                mScoreDesc.innerText = mScore >= 40 ? "Passed (Honors Qualified)" : "Not Passed (Under 40%)";
+            } else {
+                mStatus.innerText = "Not Attempted";
+                mStatus.className = "text-2xl font-black mt-1 text-slate-400";
+                mScoreDesc.innerText = "No score details";
+            }
+        }
+
+        function updateSubjectProgressUI(subKey) {
+            const score = studentState.scores[subKey];
+            const ring = document.getElementById('sub-progress-circle');
+            const textDesc = document.getElementById('sub-progress-text');
+
+            if (score !== null) {
+                ring.innerText = `${score}%`;
+                ring.className = `w-12 h-12 rounded-full border-4 ${score >= 40 ? 'border-emerald-500' : 'border-red-500'} flex items-center justify-center font-bold text-xs`;
+                textDesc.innerText = `Evaluated Grade`;
+            } else {
+                ring.innerText = "0%";
+                ring.className = "w-12 h-12 rounded-full border-4 border-slate-200 dark:border-slate-800 flex items-center justify-center font-bold text-xs";
+                textDesc.innerText = "Not Attempted";
+            }
+        }
+
+        function updateCertificatesUI() {
+            const mScore = studentState.scores.mock;
+            const certBox = document.getElementById('cert-card-container');
+            const placeholder = document.getElementById('cert-placeholder');
+
+            if (mScore !== null && mScore >= 40) {
+                certBox.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+                
+                document.getElementById('cert-student-name').innerText = studentState.name;
+                document.getElementById('cert-score-display').innerText = `Mock Score: ${mScore}%`;
+            } else {
+                certBox.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+            }
+        }
+
+        function loadSubjectLab(subKey) {
+            const container = document.getElementById('lab-slot-container');
+            const labTitle = document.getElementById('lab-title');
+            const labDesc = document.getElementById('lab-description');
+
+            if (subKey === 'adbms') {
+                labTitle.innerText = "2PL Locking & Transaction Scheduler Lab";
+                labDesc.innerText = "Test concurrency conflicts in standard lock execution under Two-Phase Locking (2PL). Click actions to queue instructions and observe locking rules.";
+                
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-sm text-slate-700 dark:text-slate-300">Transaction Operations</h4>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="simulateLockAction('T1', 'Shared', 'A')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2.5 rounded-lg font-bold border border-indigo-100 transition duration-200 active:scale-95">T1: LockShared(A)</button>
+                                <button onclick="simulateLockAction('T1', 'Exclusive', 'A')" class="bg-pink-50 hover:bg-pink-100 text-pink-700 p-2.5 rounded-lg font-bold border border-pink-100 transition duration-200 active:scale-95">T1: LockExclusive(A)</button>
+                                <button onclick="simulateLockAction('T2', 'Shared', 'A')" class="bg-teal-50 hover:bg-teal-100 text-teal-700 p-2.5 rounded-lg font-bold border border-teal-100 transition duration-200 active:scale-95">T2: LockShared(A)</button>
+                                <button onclick="simulateLockAction('T2', 'Exclusive', 'A')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 p-2.5 rounded-lg font-bold border border-amber-100 transition duration-200 active:scale-95">T2: LockExclusive(A)</button>
+                            </div>
+                            <div class="flex space-x-2 pt-2">
+                                <button onclick="simulateUnlock('T1')" class="flex-1 bg-red-600 hover:bg-red-700 text-white p-2.5 rounded-lg font-bold transition duration-200 active:scale-95">Unlock All T1</button>
+                                <button onclick="simulateUnlock('T2')" class="flex-1 bg-red-600 hover:bg-red-700 text-white p-2.5 rounded-lg font-bold transition duration-200 active:scale-95">Unlock All T2</button>
+                            </div>
+                            <button onclick="resetLockSimulator()" class="w-full border border-slate-200 dark:border-slate-800 p-2 rounded-lg font-semibold hover:bg-slate-50 text-slate-500">Reset Scheduler</button>
+                        </div>
+                        <div class="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 rounded-xl space-y-3">
+                            <h4 class="font-bold text-sm">Lock Registry & Logs</h4>
+                            <div id="lock-registry" class="p-2.5 rounded bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 space-y-1">
+                                <p class="text-slate-400 italic">No active locks held.</p>
+                            </div>
+                            <div id="lock-scheduler-logs" class="h-28 overflow-y-auto p-2 bg-slate-900 text-emerald-400 font-mono text-[10px] rounded space-y-1 border border-slate-800">
+                                <div>&gt; Concurrency scheduler ready...</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                resetLockSimulator();
+            } else if (subKey === 'ds') {
+                labTitle.innerText = "Interactive Stack & Queue Visualizer";
+                labDesc.innerText = "Interactively Push, Pop, Enqueue, and Dequeue items to trace the behavior of LIFO and FIFO memory structures in real-time.";
+                
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-sm text-slate-700 dark:text-slate-300">Stack (LIFO) Controller</h4>
+                            <div class="flex space-x-2">
+                                <input type="text" id="stack-input" placeholder="Value" class="border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 bg-transparent w-20 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                <button onclick="simulateStackPush()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-lg transition duration-200 active:scale-95">Push</button>
+                                <button onclick="simulateStackPop()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg transition duration-200 active:scale-95">Pop</button>
+                            </div>
+                            <div class="h-44 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col-reverse justify-start items-center space-y-1.5 overflow-y-auto bg-slate-50/50 dark:bg-slate-950/40" id="stack-visual-box">
+                                <p class="text-slate-400 text-[10px] self-center my-auto">Stack Empty</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-sm text-slate-700 dark:text-slate-300">Queue (FIFO) Controller</h4>
+                            <div class="flex space-x-2">
+                                <input type="text" id="queue-input" placeholder="Value" class="border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 bg-transparent w-20 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <button onclick="simulateQueueEnqueue()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-lg transition duration-200 active:scale-95">Enqueue</button>
+                                <button onclick="simulateQueueDequeue()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg transition duration-200 active:scale-95">Dequeue</button>
+                            </div>
+                            <div class="h-44 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-wrap gap-2 items-center justify-start content-center overflow-x-auto bg-slate-50/50 dark:bg-slate-950/40" id="queue-visual-box">
+                                <p class="text-slate-400 text-[10px] mx-auto">Queue Empty</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (subKey === 'cost') {
+                labTitle.innerText = "Linear Regression Curve Fitting Plotter";
+                labDesc.innerText = "Click on the graph canvas to place statistical data coordinate pairs. The plotter automatically calculates the Pearson Correlation coefficient and draws the line of regression.";
+
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+                        <div class="md:col-span-2 space-y-2">
+                            <canvas id="cost-canvas" width="400" height="300" class="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl cursor-crosshair shadow-inner"></canvas>
+                            <p class="text-[10px] text-slate-400">Click anywhere in the box above to plot scatter nodes.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <h4 class="font-bold text-sm text-slate-700 dark:text-slate-300">Statistical Readout</h4>
+                                <div class="space-y-2 text-xs">
+                                    <p class="text-slate-400">Sample Count: <strong id="cost-n-val" class="text-slate-700 dark:text-slate-200">0</strong></p>
+                                    <p class="text-slate-400">Correlation (r): <strong id="cost-r-val" class="text-slate-700 dark:text-slate-200">N/A</strong></p>
+                                    <p class="text-slate-400">Line Equation: <strong id="cost-eq-val" class="text-indigo-500 font-mono">y = mx + c</strong></p>
+                                </div>
+                            </div>
+                            <button onclick="resetCostLab()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold p-2.5 rounded-lg transition duration-200 active:scale-95">Clear Nodes</button>
+                        </div>
+                    </div>
+                `;
+                initCostPlotter();
+            } else if (subKey === 'cn') {
+                labTitle.innerText = "OSI Packets Encapsulation Visualizer";
+                labDesc.innerText = "Trigger packet transmission from Application layer down to physical layer wire. Observe header wrapping encapsulation at sender and unpacking decapsulation at the receiver.";
+
+                container.innerHTML = `
+                    <div class="space-y-6 text-xs">
+                        <div class="flex justify-between items-center">
+                            <button onclick="startOsiEncapsulation()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-6 py-2.5 rounded-lg transition duration-200 active:scale-95 shadow-md">Send Encapsulated Data</button>
+                            <div class="text-slate-400 text-xs" id="osi-status-label">Idle</div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl space-y-2">
+                                <h4 class="font-bold text-sm text-slate-700 dark:text-slate-300 mb-3">SENDER PACKET PACKING (ENCAPSULATION)</h4>
+                                <div id="osi-layer-app" class="p-2 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded transition-all">Application Layer (L7) - Raw Data</div>
+                                <div id="osi-layer-trans" class="p-2 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded transition-all">Transport Layer (L4) - Added TCP Header</div>
+                                <div id="osi-layer-net" class="p-2 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded transition-all">Network Layer (L3) - Added IP Header</div>
+                                <div id="osi-layer-link" class="p-2 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded transition-all">Data Link Layer (L2) - Added MAC Frame Trailer</div>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl flex flex-col justify-center items-center text-center space-y-4">
+                                <h4 class="font-bold text-sm text-slate-700 dark:text-slate-300">PHYSICAL WIRE (L1 TRANSMISSION)</h4>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden relative">
+                                    <div id="osi-wire-packet" class="absolute h-full w-8 bg-indigo-500 rounded-full left-0 transition-all duration-1000"></div>
+                                </div>
+                                <div class="font-mono text-[10px] text-emerald-500 bg-black p-3 rounded border border-slate-800 w-full h-24 overflow-y-auto" id="osi-logs">
+                                    &gt; Network interface operational...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (subKey === 'es') {
+                labTitle.innerText = "RTOS Task Scheduling Gantt Chart Sim";
+                labDesc.innerText = "Witness task execution on an RTOS preemptive priority scheduler. High-priority tasks immediately pre-empt and execute on CPU cycles.";
+
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-sm text-slate-700 dark:text-slate-300">Scheduler Configuration</h4>
+                            <div class="space-y-3">
+                                <div class="p-3 border border-slate-200 dark:border-slate-800 rounded-xl space-y-1">
+                                    <p class="font-bold text-rose-500">Task 1 (Sensor Polling)</p>
+                                    <p class="text-slate-400">Priority: <strong class="text-slate-700 dark:text-slate-200">High (1)</strong></p>
+                                </div>
+                                <div class="p-3 border border-slate-200 dark:border-slate-800 rounded-xl space-y-1">
+                                    <p class="font-bold text-indigo-500">Task 2 (Data Analytics)</p>
+                                    <p class="text-slate-400">Priority: <strong class="text-slate-700 dark:text-slate-200">Medium (2)</strong></p>
+                                </div>
+                                <div class="p-3 border border-slate-200 dark:border-slate-800 rounded-xl space-y-1">
+                                    <p class="font-bold text-emerald-500">Task 3 (Display Update)</p>
+                                    <p class="text-slate-400">Priority: <strong class="text-slate-700 dark:text-slate-200">Low (3)</strong></p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button onclick="triggerRtosStep()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-lg transition duration-250 active:scale-95 shadow-md">Simulate Tick (Next Cycle)</button>
+                                <button onclick="resetRtosSim()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-3 py-2.5 rounded-lg transition duration-200 active:scale-95">Reset</button>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 p-4 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl space-y-4">
+                            <h4 class="font-bold text-sm text-slate-700 dark:text-slate-300">Preemptive Scheduling Gantt Output</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center space-x-2">
+                                    <span class="w-16 font-bold">Task 1 (H):</span>
+                                    <div class="flex-1 h-6 bg-slate-200 dark:bg-slate-800 rounded flex overflow-hidden border border-slate-300 dark:border-slate-700" id="gantt-t1"></div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="w-16 font-bold">Task 2 (M):</span>
+                                    <div class="flex-1 h-6 bg-slate-200 dark:bg-slate-800 rounded flex overflow-hidden border border-slate-300 dark:border-slate-700" id="gantt-t2"></div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="w-16 font-bold">Task 3 (L):</span>
+                                    <div class="flex-1 h-6 bg-slate-200 dark:bg-slate-800 rounded flex overflow-hidden border border-slate-300 dark:border-slate-700" id="gantt-t3"></div>
+                                </div>
+                            </div>
+                            <div class="font-mono text-[10px] text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3">
+                                Click 'Simulate Tick' to run priority algorithms. Tasks execute and block. High priority task pre-empts every 4 cycles.
+                            </div>
+                        </div>
+                    </div>
+                `;
+                resetRtosSim();
+            }
+        }
+
+        let dbLocks = {};
+        function resetLockSimulator() {
+            dbLocks = { A: { type: null, holders: [] } };
+            const reg = document.getElementById('lock-registry');
+            const logs = document.getElementById('lock-scheduler-logs');
+            if (reg) reg.innerHTML = '<p class="text-slate-400 italic">No active locks held.</p>';
+            if (logs) logs.innerHTML = '<div>&gt; Concurrency scheduler ready...</div>';
+        }
+
+        function simulateLockAction(trans, lockType, resource) {
+            const logs = document.getElementById('lock-scheduler-logs');
+            const reg = document.getElementById('lock-registry');
+
+            if (!dbLocks[resource]) {
+                dbLocks[resource] = { type: null, holders: [] };
+            }
+
+            const active = dbLocks[resource];
+
+            if (active.type === null) {
+                active.type = lockType;
+                active.holders.push(trans);
+                logs.innerHTML += `<div class="text-emerald-400">&gt; ${trans} granted ${lockType} Lock on item ${resource}.</div>`;
+            } else if (active.type === 'Shared' && lockType === 'Shared') {
+                if (!active.holders.includes(trans)) {
+                    active.holders.push(trans);
+                    logs.innerHTML += `<div class="text-emerald-400">&gt; Shared compatible: ${trans} also holds Shared Lock on ${resource}.</div>`;
+                } else {
+                    logs.innerHTML += `<div class="text-amber-400">&gt; ${trans} already holds Shared Lock.</div>`;
+                }
+            } else {
+                logs.innerHTML += `<div class="text-rose-400">&gt; BLOCKED! ${trans} denied ${lockType} Lock. Item ${resource} locked in ${active.type} state by ${active.holders.join(', ')}.</div>`;
+            }
+
+            logs.scrollTop = logs.scrollHeight;
+            updateLockRegistryUI();
+        }
+
+        function simulateUnlock(trans) {
+            const logs = document.getElementById('lock-scheduler-logs');
+            let unlockedAny = false;
+
+            for (let resource in dbLocks) {
+                const active = dbLocks[resource];
+                if (active.holders.includes(trans)) {
+                    active.holders = active.holders.filter(t => t !== trans);
+                    if (active.holders.length === 0) {
+                        active.type = null;
+                    }
+                    unlockedAny = true;
+                    logs.innerHTML += `<div class="text-indigo-400">&gt; Released lock hold of ${trans} on ${resource}.</div>`;
+                }
+            }
+
+            if (!unlockedAny) {
+                logs.innerHTML += `<div class="text-slate-500">&gt; ${trans} did not hold any active locks.</div>`;
+            }
+
+            logs.scrollTop = logs.scrollHeight;
+            updateLockRegistryUI();
+        }
+
+        function updateLockRegistryUI() {
+            const reg = document.getElementById('lock-registry');
+            reg.innerHTML = '';
+            let lockCount = 0;
+
+            for (let res in dbLocks) {
+                const active = dbLocks[res];
+                if (active.type !== null) {
+                    lockCount++;
+                    reg.innerHTML += `
+                        <div class="flex justify-between items-center p-2 rounded bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800">
+                            <span class="font-bold text-slate-700 dark:text-slate-200">Resource: ${res}</span>
+                            <span class="px-2 py-0.5 rounded font-bold uppercase tracking-wider ${active.type === 'Shared' ? 'bg-indigo-100 text-indigo-700' : 'bg-pink-100 text-pink-700'}">[${active.type} Lock]</span>
+                            <span class="text-[10px] text-slate-400">By: ${active.holders.join(', ')}</span>
+                        </div>
+                    `;
+                }
+            }
+
+            if (lockCount === 0) {
+                reg.innerHTML = '<p class="text-slate-400 italic">No active locks held.</p>';
+            }
+        }
+
+        const dsStack = [];
+        const dsQueue = [];
+
+        function simulateStackPush() {
+            const val = document.getElementById('stack-input').value.trim();
+            if (!val) return;
+            document.getElementById('stack-input').value = '';
+
+            dsStack.push(val);
+            renderStackUI();
+        }
+
+        function simulateStackPop() {
+            if (dsStack.length === 0) {
+                showToast("Underflow Error", "Stack contains no popped elements!", "error");
+                return;
+            }
+            dsStack.pop();
+            renderStackUI();
+        }
+
+        function renderStackUI() {
+            const box = document.getElementById('stack-visual-box');
+            box.innerHTML = '';
+
+            if (dsStack.length === 0) {
+                box.innerHTML = '<p class="text-slate-400 text-[10px] self-center my-auto">Stack Empty</p>';
+                return;
+            }
+
+            dsStack.forEach((el, idx) => {
+                const elementDiv = document.createElement('div');
+                elementDiv.className = "w-4/5 py-2.5 bg-emerald-500 text-white font-bold rounded-xl text-center border-2 border-emerald-600 shadow-md slide-in flex justify-between px-4";
+                elementDiv.innerHTML = `<span>Value: ${el}</span> <span class="text-[10px] text-emerald-100">Index [${idx}]${idx === dsStack.length - 1 ? ' <- TOP' : ''}</span>`;
+                box.appendChild(elementDiv);
+            });
+        }
+
+        function simulateQueueEnqueue() {
+            const val = document.getElementById('queue-input').value.trim();
+            if (!val) return;
+            document.getElementById('queue-input').value = '';
+
+            dsQueue.push(val);
+            renderQueueUI();
+        }
+
+        function simulateQueueDequeue() {
+            if (dsQueue.length === 0) {
+                showToast("Underflow Error", "Queue empty! Cannot dequeue elements.", "error");
+                return;
+            }
+            dsQueue.shift();
+            renderQueueUI();
+        }
+
+        function renderQueueUI() {
+            const box = document.getElementById('queue-visual-box');
+            box.innerHTML = '';
+
+            if (dsQueue.length === 0) {
+                box.innerHTML = '<p class="text-slate-400 text-[10px] mx-auto">Queue Empty</p>';
+                return;
+            }
+
+            dsQueue.forEach((el, idx) => {
+                const elementDiv = document.createElement('div');
+                elementDiv.className = "px-4 py-4 bg-blue-500 text-white font-bold rounded-xl text-center border-2 border-blue-600 shadow-md slide-in flex flex-col justify-center items-center relative min-w-[70px]";
+                elementDiv.innerHTML = `
+                    <span class="text-xs">${el}</span>
+                    <span class="text-[8px] text-blue-100 block mt-1">${idx === 0 ? 'FRONT' : (idx === dsQueue.length - 1 ? 'REAR' : `Node ${idx}`)}</span>
+                `;
+                box.appendChild(elementDiv);
+            });
+        }
+
+        let costPoints = [];
+        let costCanvas, costCtx;
+
+        function initCostPlotter() {
+            costCanvas = document.getElementById('cost-canvas');
+            if (!costCanvas) return;
+            costCtx = costCanvas.getContext('2d');
+
+            costCanvas.addEventListener('mousedown', function(e) {
+                const rect = costCanvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                costPoints.push({ x, y });
+                calculateLinearRegression();
+                drawCostScatter();
+            });
+
+            drawCostScatter();
+        }
+
+        function resetCostLab() {
+            costPoints = [];
+            document.getElementById('cost-n-val').innerText = '0';
+            document.getElementById('cost-r-val').innerText = 'N/A';
+            document.getElementById('cost-eq-val').innerText = 'y = mx + c';
+            drawCostScatter();
+        }
+
+        function calculateLinearRegression() {
+            const n = costPoints.length;
+            if (n < 2) return;
+
+            let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0, sumY2 = 0;
+            costPoints.forEach(p => {
+                sumX += p.x;
+                sumY += p.y;
+                sumXY += p.x * p.y;
+                sumX2 += p.x * p.x;
+                sumY2 += p.y * p.y;
+            });
+
+            const numSlope = (n * sumXY) - (sumX * sumY);
+            const denSlope = (n * sumX2) - (sumX * sumX);
+            
+            const m = denSlope !== 0 ? numSlope / denSlope : 0;
+            const c = (sumY - (m * sumX)) / n;
+
+            const rDen = Math.sqrt(((n * sumX2) - (sumX * sumX)) * ((n * sumY2) - (sumY * sumY)));
+            const r = rDen !== 0 ? numSlope / rDen : 0;
+
+            document.getElementById('cost-n-val').innerText = n;
+            document.getElementById('cost-r-val').innerText = r.toFixed(4);
+            document.getElementById('cost-eq-val').innerText = `y = ${(-m).toFixed(2)}x + ${(300 - c).toFixed(1)}`;
+        }
+
+        function drawCostScatter() {
+            if (!costCtx) return;
+            const w = costCanvas.width;
+            const h = costCanvas.height;
+
+            costCtx.clearRect(0, 0, w, h);
+
+            costCtx.strokeStyle = isDarkMode ? '#1e293b' : '#f1f5f9';
+            costCtx.lineWidth = 1;
+            for (let i = 25; i < w; i += 25) {
+                costCtx.beginPath();
+                costCtx.moveTo(i, 0);
+                costCtx.lineTo(i, h);
+                costCtx.stroke();
+            }
+            for (let j = 25; j < h; j += 25) {
+                costCtx.beginPath();
+                costCtx.moveTo(0, j);
+                costCtx.lineTo(w, j);
+                costCtx.stroke();
+            }
+
+            if (costPoints.length >= 2) {
+                let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+                const n = costPoints.length;
+                costPoints.forEach(p => {
+                    sumX += p.x;
+                    sumY += p.y;
+                    sumXY += p.x * p.y;
+                    sumX2 += p.x * p.x;
+                });
+
+                const m = ((n * sumXY) - (sumX * sumY)) / ((n * sumX2) - (sumX * sumX));
+                const c = (sumY - (m * sumX)) / n;
+
+                costCtx.strokeStyle = '#6366f1';
+                costCtx.lineWidth = 3;
+                costCtx.beginPath();
+                costCtx.moveTo(0, c);
+                costCtx.lineTo(w, (m * w) + c);
+                costCtx.stroke();
+            }
+
+            costPoints.forEach(p => {
+                costCtx.fillStyle = '#f59e0b';
+                costCtx.beginPath();
+                costCtx.arc(p.x, p.y, 6, 0, 2 * Math.PI);
+                costCtx.fill();
+                costCtx.strokeStyle = '#d97706';
+                costCtx.lineWidth = 1.5;
+                costCtx.stroke();
+            });
+        }
+
+        let osiActiveStep = 0;
+        const osiLogOutput = [
+            "Application Layer: Raw HTML content wrapped into HTTP text segment.",
+            "Transport Layer: Port headers added. Encapsulated into TCP Segment.",
+            "Network Layer: Routing IPs attached. Encapsulated into IPv4 Packet.",
+            "Data Link Layer: Local hardware MACs added. Encapsulated into Ethernet Frame.",
+            "Physical Wire: Transporting raw binary signals..."
+        ];
+
+        function startOsiEncapsulation() {
+            osiActiveStep = 0;
+            const logs = document.getElementById('osi-logs');
+            logs.innerHTML = '<div>&gt; Initiating transmission...</div>';
+
+            const elements = ['osi-layer-app', 'osi-layer-trans', 'osi-layer-net', 'osi-layer-link'];
+            elements.forEach(id => {
+                document.getElementById(id).className = "p-2 border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded transition-all";
+            });
+
+            document.getElementById('osi-wire-packet').style.left = '0%';
+            document.getElementById('osi-status-label').innerText = "Processing...";
+
+            runOsiStep();
+        }
+
+        function runOsiStep() {
+            if (osiActiveStep > 4) {
+                document.getElementById('osi-status-label').innerText = "Delivered!";
+                return;
+            }
+
+            const logs = document.getElementById('osi-logs');
+            logs.innerHTML += `<div class="text-indigo-400">&gt; ${osiLogOutput[osiActiveStep]}</div>`;
+            logs.scrollTop = logs.scrollHeight;
+
+            if (osiActiveStep === 0) {
+                document.getElementById('osi-layer-app').className = "p-2 border border-emerald-500 bg-emerald-50/20 rounded transition-all font-bold";
+            } else if (osiActiveStep === 1) {
+                document.getElementById('osi-layer-trans').className = "p-2 border border-emerald-500 bg-emerald-50/20 rounded transition-all font-bold";
+            } else if (osiActiveStep === 2) {
+                document.getElementById('osi-layer-net').className = "p-2 border border-emerald-500 bg-emerald-50/20 rounded transition-all font-bold";
+            } else if (osiActiveStep === 3) {
+                document.getElementById('osi-layer-link').className = "p-2 border border-emerald-500 bg-emerald-50/20 rounded transition-all font-bold";
+            } else if (osiActiveStep === 4) {
+                document.getElementById('osi-wire-packet').style.left = '90%';
+            }
+
+            osiActiveStep++;
+            setTimeout(runOsiStep, 1000);
+        }
+
+        let rtosSimTicks = 0;
+        const rtosTaskLog = [];
+
+        function resetRtosSim() {
+            rtosSimTicks = 0;
+            document.getElementById('gantt-t1').innerHTML = '';
+            document.getElementById('gantt-t2').innerHTML = '';
+            document.getElementById('gantt-t3').innerHTML = '';
+        }
+
+        function triggerRtosStep() {
+            if (rtosSimTicks >= 16) {
+                showToast("Limit Reached", "Resetting scheduling timeline Gantt box.", "error");
+                resetRtosSim();
+                return;
+            }
+
+            const gantt1 = document.getElementById('gantt-t1');
+            const gantt2 = document.getElementById('gantt-t2');
+            const gantt3 = document.getElementById('gantt-t3');
+
+            let runningTask = 3;
+
+            if (rtosSimTicks % 4 === 0) {
+                runningTask = 1;
+            } else if (rtosSimTicks % 2 === 0) {
+                runningTask = 2;
+            } else {
+                runningTask = 3;
+            }
+
+            gantt1.innerHTML += `<div class="flex-1 h-full ${runningTask === 1 ? 'bg-rose-500 border-r border-rose-600' : 'bg-slate-100 dark:bg-slate-900 border-r border-slate-300 dark:border-slate-800'}"></div>`;
+            gantt2.innerHTML += `<div class="flex-1 h-full ${runningTask === 2 ? 'bg-indigo-500 border-r border-indigo-600' : 'bg-slate-100 dark:bg-slate-900 border-r border-slate-300 dark:border-slate-800'}"></div>`;
+            gantt3.innerHTML += `<div class="flex-1 h-full ${runningTask === 3 ? 'bg-emerald-500 border-r border-emerald-600' : 'bg-slate-100 dark:bg-slate-900 border-r border-slate-300 dark:border-slate-800'}"></div>`;
+
+            rtosSimTicks++;
+        }
+
+    </script>
+</body>
+</html>
